@@ -6,199 +6,205 @@
 <title>split.two</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap');
-:root{
-  --bg:#faf9f6;--surface:#fff;--surface2:#f3f1ec;--border:#e8e4dc;
-  --text:#1a1915;--text2:#6b6760;--text3:#a09d98;
-  --accent:#2d6a4f;--accent-light:#e8f4ee;
-  --accent2:#c77d3e;--accent2-light:#fdf0e3;
-  --danger:#c0392b;--shadow:0 1px 4px rgba(0,0,0,.06),0 0 0 1px rgba(0,0,0,.04);--r:12px
+:root {
+  --bg:#faf9f6; --surface:#fff; --surface2:#f3f1ec; --border:#e8e4dc;
+  --text:#1a1915; --text2:#6b6760; --text3:#a09d98;
+  --accent:#2d6a4f; --accent-light:#e8f4ee;
+  --accent2:#c77d3e; --accent2-light:#fdf0e3;
+  --danger:#c0392b; --shadow:0 1px 4px rgba(0,0,0,.06),0 0 0 1px rgba(0,0,0,.04); --r:12px;
 }
-*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;font-size:15px;line-height:1.5}
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:'DM Sans',sans-serif; background:var(--bg); color:var(--text); min-height:100vh; font-size:15px; line-height:1.5; }
 
-.screen{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px}
-.card{background:var(--surface);border-radius:var(--r);box-shadow:var(--shadow);padding:36px 32px;max-width:400px;width:100%}
-.card-icon{font-size:32px;margin-bottom:16px;text-align:center}
-.card h2{font-family:'DM Serif Display',serif;font-size:22px;margin-bottom:6px;text-align:center}
-.card>p{font-size:14px;color:var(--text2);margin-bottom:24px;text-align:center;line-height:1.5}
+/* ── Screens ── */
+.screen { min-height:100vh; display:flex; align-items:center; justify-content:center; padding:24px; }
+.card { background:var(--surface); border-radius:var(--r); box-shadow:var(--shadow); padding:36px 32px; max-width:400px; width:100%; }
+.card-icon { font-size:32px; margin-bottom:16px; text-align:center; }
+.card h2 { font-family:'DM Serif Display',serif; font-size:22px; margin-bottom:6px; text-align:center; }
+.card > p { font-size:14px; color:var(--text2); margin-bottom:24px; text-align:center; line-height:1.5; }
 
-.fl{display:block;font-size:11px;font-weight:500;color:var(--text2);text-transform:uppercase;letter-spacing:.7px;margin-bottom:5px;margin-top:14px}
-.fl:first-child{margin-top:0}
-input[type=text],input[type=password],input[type=number],select{
-  width:100%;padding:10px 13px;border:1px solid var(--border);border-radius:8px;
-  font-family:inherit;font-size:14px;background:var(--bg);color:var(--text);
-  outline:none;transition:border-color .15s
+/* ── Forms ── */
+.fl { display:block; font-size:11px; font-weight:500; color:var(--text2); text-transform:uppercase; letter-spacing:.7px; margin-bottom:5px; margin-top:14px; }
+.fl:first-child { margin-top:0; }
+input[type=text], input[type=password], input[type=number], select {
+  width:100%; padding:10px 13px; border:1px solid var(--border); border-radius:8px;
+  font-family:inherit; font-size:14px; background:var(--bg); color:var(--text);
+  outline:none; transition:border-color .15s;
 }
-input:focus,select:focus{border-color:var(--accent)}
-.hint{font-size:12px;color:var(--text3);margin-top:4px}
-hr.div{border:none;border-top:1px solid var(--border);margin:18px 0}
-.err{color:var(--danger);font-size:13px;margin-top:8px;min-height:18px;text-align:center}
+input:focus, select:focus { border-color:var(--accent); }
+.hint { font-size:12px; color:var(--text3); margin-top:4px; }
+hr.div { border:none; border-top:1px solid var(--border); margin:18px 0; }
+.err { color:var(--danger); font-size:13px; margin-top:8px; min-height:18px; text-align:center; }
 
-.btn-p{background:var(--accent);color:#fff;border:none;border-radius:8px;padding:11px 20px;
-  font-family:inherit;font-size:14px;font-weight:500;cursor:pointer;width:100%;margin-top:18px;
-  transition:opacity .15s}
-.btn-p:hover{opacity:.87}
-.btn-p:disabled{opacity:.5;cursor:default}
-.btn-s{background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:9px 16px;
-  font-family:inherit;font-size:13px;cursor:pointer;color:var(--text);flex:1;transition:background .15s}
-.btn-s:hover{background:var(--border)}
+/* ── Buttons ── */
+.btn-p { background:var(--accent); color:#fff; border:none; border-radius:8px; padding:11px 20px;
+  font-family:inherit; font-size:14px; font-weight:500; cursor:pointer; width:100%; margin-top:18px; transition:opacity .15s; }
+.btn-p:hover { opacity:.87; }
+.btn-p:disabled { opacity:.5; cursor:default; }
+.btn-s { background:var(--surface2); border:1px solid var(--border); border-radius:8px; padding:9px 16px;
+  font-family:inherit; font-size:13px; cursor:pointer; color:var(--text); flex:1; transition:background .15s; }
+.btn-s:hover { background:var(--border); }
+.spinner { display:inline-block; width:16px; height:16px; border:2px solid rgba(255,255,255,.3);
+  border-top-color:#fff; border-radius:50%; animation:spin .7s linear infinite; vertical-align:middle; margin-right:6px; }
+@keyframes spin { to { transform:rotate(360deg); } }
 
-.spinner{display:inline-block;width:16px;height:16px;border:2px solid rgba(255,255,255,.3);
-  border-top-color:#fff;border-radius:50%;animation:spin .7s linear infinite;vertical-align:middle;margin-right:6px}
-@keyframes spin{to{transform:rotate(360deg)}}
+/* ── Sync dot ── */
+.sync-dot { width:7px; height:7px; border-radius:50%; background:#bbb; display:inline-block; margin-right:5px; transition:background .3s; }
+.sync-dot.live { background:#2d6a4f; }
+.sync-dot.saving { background:#c77d3e; animation:pulse .8s ease-in-out infinite; }
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.4} }
 
-.sync-dot{width:7px;height:7px;border-radius:50%;background:#bbb;display:inline-block;margin-right:5px;transition:background .3s}
-.sync-dot.live{background:#2d6a4f}
-.sync-dot.saving{background:#c77d3e;animation:pulse .8s ease-in-out infinite}
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+/* ── Header ── */
+.app-header { background:var(--surface); border-bottom:1px solid var(--border); padding:13px 24px;
+  display:flex; align-items:center; justify-content:space-between; position:sticky; top:0; z-index:100; }
+.logo { font-family:'DM Serif Display',serif; font-size:20px; color:var(--text); }
+.logo span { color:var(--accent); }
+.hright { display:flex; align-items:center; gap:10px; }
+.sync-status { font-size:12px; color:var(--text3); display:flex; align-items:center; }
+.mnav { display:flex; align-items:center; gap:6px; }
+.nav-btn { background:none; border:1px solid var(--border); border-radius:8px; width:30px; height:30px;
+  cursor:pointer; display:flex; align-items:center; justify-content:center; color:var(--text2); font-size:16px; transition:background .15s; }
+.nav-btn:hover { background:var(--surface2); }
+.mlabel { font-size:13px; font-weight:500; min-width:110px; text-align:center; }
+.ibtn { background:none; border:1px solid var(--border); border-radius:8px; padding:6px 12px;
+  font-family:inherit; font-size:12px; font-weight:500; cursor:pointer; color:var(--text2);
+  display:flex; align-items:center; gap:5px; transition:background .15s; white-space:nowrap; }
+.ibtn:hover { background:var(--surface2); }
 
-.app-header{background:var(--surface);border-bottom:1px solid var(--border);padding:13px 24px;
-  display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
-.logo{font-family:'DM Serif Display',serif;font-size:20px;color:var(--text)}
-.logo span{color:var(--accent)}
-.hright{display:flex;align-items:center;gap:10px}
-.sync-status{font-size:12px;color:var(--text3);display:flex;align-items:center}
-.mnav{display:flex;align-items:center;gap:6px}
-.nav-btn{background:none;border:1px solid var(--border);border-radius:8px;width:30px;height:30px;
-  cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--text2);font-size:16px;transition:background .15s}
-.nav-btn:hover{background:var(--surface2)}
-.mlabel{font-size:13px;font-weight:500;min-width:110px;text-align:center}
-.ibtn{background:none;border:1px solid var(--border);border-radius:8px;padding:6px 12px;
-  font-family:inherit;font-size:12px;font-weight:500;cursor:pointer;color:var(--text2);
-  display:flex;align-items:center;gap:5px;transition:background .15s;white-space:nowrap}
-.ibtn:hover{background:var(--surface2)}
+/* ── Layout ── */
+.ctr { max-width:980px; margin:0 auto; padding:24px 20px; }
+.tab-bar { display:flex; gap:4px; margin-bottom:22px; background:var(--surface2); border-radius:10px; padding:4px; width:fit-content; }
+.tab { padding:7px 16px; border-radius:7px; font-size:13px; font-weight:500; cursor:pointer; border:none;
+  background:none; color:var(--text2); transition:all .15s; font-family:inherit; }
+.tab.active { background:var(--surface); color:var(--text); box-shadow:0 1px 3px rgba(0,0,0,.08); }
 
-.ctr{max-width:980px;margin:0 auto;padding:24px 20px}
-.tab-bar{display:flex;gap:4px;margin-bottom:22px;background:var(--surface2);border-radius:10px;padding:4px;width:fit-content}
-.tab{padding:7px 16px;border-radius:7px;font-size:13px;font-weight:500;cursor:pointer;border:none;
-  background:none;color:var(--text2);transition:all .15s;font-family:inherit}
-.tab.active{background:var(--surface);color:var(--text);box-shadow:0 1px 3px rgba(0,0,0,.08)}
+/* ── Summary ── */
+.sum-row { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-bottom:18px; }
+.sum-card { background:var(--surface); border-radius:var(--r); box-shadow:var(--shadow); padding:15px 18px; }
+.sum-card .sl { font-size:10px; font-weight:500; color:var(--text3); text-transform:uppercase; letter-spacing:.7px; margin-bottom:3px; }
+.sum-card .sv { font-size:22px; font-weight:300; color:var(--text); font-family:'DM Serif Display',serif; }
+.sum-card .ss { font-size:11px; color:var(--text3); margin-top:1px; }
 
-.sum-row{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:18px}
-.sum-card{background:var(--surface);border-radius:var(--r);box-shadow:var(--shadow);padding:15px 18px}
-.sum-card .sl{font-size:10px;font-weight:500;color:var(--text3);text-transform:uppercase;letter-spacing:.7px;margin-bottom:3px}
-.sum-card .sv{font-size:22px;font-weight:300;color:var(--text);font-family:'DM Serif Display',serif}
-.sum-card .ss{font-size:11px;color:var(--text3);margin-top:1px}
+/* ── Settlement card ── */
+.settle-card { background:var(--surface); border-radius:var(--r); box-shadow:var(--shadow);
+  padding:16px 20px; margin-bottom:18px; display:flex; align-items:flex-start; gap:14px; }
+.sicon { width:36px; height:36px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:15px; flex-shrink:0; margin-top:2px; }
+.sicon.green { background:var(--accent-light); }
+.sicon.amber { background:var(--accent2-light); }
+.sicon.neutral { background:var(--surface2); }
+.stext { flex:1; }
+.stext strong { font-weight:500; font-size:14px; }
+.stext .ssub { font-size:12px; color:var(--text2); margin-top:1px; }
+.samt { font-family:'DM Serif Display',serif; font-size:24px; color:var(--accent); flex-shrink:0; }
+.samt.z { color:var(--text3); font-size:16px; }
+.settle-actions { display:flex; gap:7px; margin-top:10px; flex-wrap:wrap; }
+.btn-settle-full { background:var(--accent); color:#fff; border:none; border-radius:7px; padding:7px 14px;
+  font-family:inherit; font-size:12px; font-weight:500; cursor:pointer; transition:opacity .15s; white-space:nowrap; }
+.btn-settle-full:hover { opacity:.85; }
+.btn-settle-partial { background:none; border:1px solid var(--border); border-radius:7px; padding:7px 14px;
+  font-family:inherit; font-size:12px; font-weight:500; cursor:pointer; color:var(--text2); transition:background .15s; white-space:nowrap; }
+.btn-settle-partial:hover { background:var(--surface2); }
 
-.settle-card{background:var(--surface);border-radius:var(--r);box-shadow:var(--shadow);
-  padding:16px 20px;margin-bottom:18px;display:flex;align-items:center;gap:14px}
-.sicon{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0}
-.sicon.green{background:var(--accent-light)}.sicon.amber{background:var(--accent2-light)}.sicon.neutral{background:var(--surface2)}
-.stext{flex:1}.stext strong{font-weight:500;font-size:14px}
-.stext .ssub{font-size:12px;color:var(--text2);margin-top:1px}
-.samt{font-family:'DM Serif Display',serif;font-size:24px;color:var(--accent);flex-shrink:0}
-.samt.z{color:var(--text3);font-size:16px}
+/* ── Expense columns ── */
+.two-col { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:18px; }
+.ecol { background:var(--surface); border-radius:var(--r); box-shadow:var(--shadow); overflow:hidden; display:flex; flex-direction:column; }
+.chdr { padding:13px 16px; border-bottom:1px solid var(--border); display:flex; align-items:center; justify-content:space-between; }
+.chdr .pname { font-weight:500; font-size:14px; }
+.chdr .ptotal { font-family:'DM Serif Display',serif; font-size:17px; color:var(--accent); }
+.elist { flex:1; }
+.eitem { display:flex; align-items:center; padding:9px 16px; gap:9px; border-bottom:1px solid var(--border); transition:background .1s; }
+.eitem:last-child { border-bottom:none; }
+.eitem:hover { background:var(--surface2); }
+.eitem.settlement { background:#f6fbf8; border-left:3px solid var(--accent); }
+.eitem.settlement .edesc { color:var(--accent); }
+.eitem.settlement .eamt { color:var(--accent); }
+.ecat { width:27px; height:27px; border-radius:7px; background:var(--surface2); display:flex; align-items:center; justify-content:center; font-size:12px; flex-shrink:0; }
+.edets { flex:1; min-width:0; }
+.edesc { font-size:13px; font-weight:500; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.emeta { font-size:11px; color:var(--text3); margin-top:2px; display:flex; align-items:center; gap:5px; flex-wrap:wrap; }
+.for-badge { display:inline-flex; align-items:center; gap:3px; background:var(--accent2-light);
+  color:var(--accent2); font-size:10px; font-weight:500; padding:1px 6px; border-radius:10px;
+  border:1px solid #f4d5b0; white-space:nowrap; }
+.eamt { font-size:13px; font-weight:500; flex-shrink:0; }
+.edel { background:none; border:none; cursor:pointer; color:var(--text3); font-size:13px; padding:2px 4px;
+  border-radius:4px; opacity:0; transition:opacity .15s,color .15s; flex-shrink:0; line-height:1; }
+.eitem:hover .edel { opacity:1; }
+.edel:hover { color:var(--danger); }
 
-.two-col{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:18px}
-.ecol{background:var(--surface);border-radius:var(--r);box-shadow:var(--shadow);overflow:hidden;display:flex;flex-direction:column}
-.chdr{padding:13px 16px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
-.chdr .pname{font-weight:500;font-size:14px}
-.chdr .ptotal{font-family:'DM Serif Display',serif;font-size:17px;color:var(--accent)}
-.elist{flex:1}
-.eitem{display:flex;align-items:center;padding:9px 16px;gap:9px;border-bottom:1px solid var(--border);transition:background .1s}
-.eitem:last-child{border-bottom:none}.eitem:hover{background:var(--surface2)}
-.ecat{width:27px;height:27px;border-radius:7px;background:var(--surface2);display:flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0}
-.edets{flex:1;min-width:0}
-.edesc{font-size:13px;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.emeta{font-size:11px;color:var(--text3);margin-top:2px;display:flex;align-items:center;gap:5px}
+/* ── Add form ── */
+.aform { padding:11px 16px 13px; border-top:1px solid var(--border); background:var(--surface2); }
+.aform input, .aform select { padding:7px 10px; font-size:13px; margin-bottom:6px; }
+.arow { display:grid; grid-template-columns:1fr 1fr; gap:6px; margin-bottom:6px; }
+.arow input, .arow select { margin-bottom:0; }
+.btn-add { background:var(--accent); color:#fff; border:none; border-radius:8px; padding:8px 14px;
+  font-family:inherit; font-size:13px; font-weight:500; cursor:pointer; width:100%; transition:opacity .15s; }
+.btn-add:hover { opacity:.88; }
+.empty { text-align:center; padding:20px; color:var(--text3); font-size:13px; }
 
-/* "for partner" badge */
-.for-badge{display:inline-flex;align-items:center;gap:3px;background:var(--accent2-light);
-  color:var(--accent2);font-size:10px;font-weight:500;padding:1px 6px;border-radius:10px;
-  border:1px solid #f4d5b0;white-space:nowrap}
+/* ── For-whom toggle ── */
+.for-toggle { display:flex; margin-bottom:6px; border-radius:8px; overflow:hidden; border:1px solid var(--border); }
+.for-toggle button { flex:1; padding:6px 8px; border:none; font-family:inherit; font-size:12px; font-weight:500;
+  cursor:pointer; transition:all .15s; background:var(--surface); color:var(--text2); }
+.for-toggle button.active-me { background:var(--accent); color:#fff; }
+.for-toggle button.active-them { background:var(--accent2); color:#fff; }
+.for-toggle button:not(.active-me):not(.active-them):hover { background:var(--surface2); }
 
-.eamt{font-size:13px;font-weight:500;flex-shrink:0}
-.edel{background:none;border:none;cursor:pointer;color:var(--text3);font-size:13px;padding:2px 4px;
-  border-radius:4px;opacity:0;transition:opacity .15s,color .15s;flex-shrink:0;line-height:1}
-.eitem:hover .edel{opacity:1}.edel:hover{color:var(--danger)}
+/* ── Carryover ── */
+.carry { background:var(--accent2-light); border:1px solid #f4d5b0; border-radius:var(--r);
+  padding:11px 15px; margin-bottom:14px; font-size:13px; color:var(--accent2); display:flex; align-items:center; gap:8px; }
 
-/* Add form */
-.aform{padding:11px 16px 13px;border-top:1px solid var(--border);background:var(--surface2)}
-.aform input,.aform select{padding:7px 10px;font-size:13px;margin-bottom:6px}
-.arow{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:6px}
-.arow input,.arow select{margin-bottom:0}
-.btn-add{background:var(--accent);color:#fff;border:none;border-radius:8px;padding:8px 14px;
-  font-family:inherit;font-size:13px;font-weight:500;cursor:pointer;width:100%;transition:opacity .15s}
-.btn-add:hover{opacity:.88}
-.empty{text-align:center;padding:20px;color:var(--text3);font-size:13px}
+/* ── History ── */
+.stitle { font-size:11px; font-weight:500; text-transform:uppercase; letter-spacing:.7px; color:var(--text3); margin-bottom:10px; }
+.hcard { background:var(--surface); border-radius:var(--r); box-shadow:var(--shadow); overflow:hidden; }
+.hitem { display:flex; align-items:center; padding:12px 18px; border-bottom:1px solid var(--border); gap:14px; cursor:pointer; transition:background .1s; }
+.hitem:last-child { border-bottom:none; }
+.hitem:hover { background:var(--surface2); }
+.hmo { font-weight:500; font-size:13px; min-width:110px; }
+.hstats { display:flex; gap:16px; flex:1; font-size:12px; color:var(--text2); }
+.hsettle { font-size:12px; font-weight:500; }
+.hsettle.p1 { color:var(--accent); }
+.hsettle.p2 { color:var(--accent2); }
+.hsettle.ev { color:var(--text3); }
 
-/* For-whom toggle */
-.for-toggle{display:flex;gap:0;margin-bottom:6px;border-radius:8px;overflow:hidden;border:1px solid var(--border)}
-.for-toggle button{flex:1;padding:6px 8px;border:none;font-family:inherit;font-size:12px;font-weight:500;
-  cursor:pointer;transition:all .15s;background:var(--surface);color:var(--text2)}
-.for-toggle button.active-me{background:var(--accent);color:#fff}
-.for-toggle button.active-them{background:var(--accent2);color:#fff}
-.for-toggle button:not(.active-me):not(.active-them):hover{background:var(--surface2)}
+/* ── Trends ── */
+.tgrid { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:16px; }
+.tcard { background:var(--surface); border-radius:var(--r); box-shadow:var(--shadow); padding:18px; }
+.tcard-wide { background:var(--surface); border-radius:var(--r); box-shadow:var(--shadow); padding:18px; margin-bottom:16px; }
+.ttitle { font-size:11px; font-weight:500; color:var(--text3); text-transform:uppercase; letter-spacing:.6px; margin-bottom:14px; }
+.brow { display:flex; align-items:center; gap:9px; margin-bottom:8px; }
+.brow:last-child { margin-bottom:0; }
+.blabel { font-size:12px; color:var(--text2); width:86px; flex-shrink:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.btrack { flex:1; height:7px; background:var(--surface2); border-radius:4px; overflow:hidden; }
+.bfill { height:100%; border-radius:4px; transition:width .5s ease; }
+.bval { font-size:12px; font-weight:500; color:var(--text); width:55px; text-align:right; flex-shrink:0; }
+.legend { display:flex; gap:12px; flex-wrap:wrap; margin-top:10px; }
+.li { display:flex; align-items:center; gap:5px; font-size:12px; color:var(--text2); }
+.ldot { width:8px; height:8px; border-radius:50%; flex-shrink:0; }
+.nodata { text-align:center; padding:48px 20px; color:var(--text3); font-size:14px; }
 
-.carry{background:var(--accent2-light);border:1px solid #f4d5b0;border-radius:var(--r);
-  padding:11px 15px;margin-bottom:14px;font-size:13px;color:var(--accent2);display:flex;align-items:center;gap:8px}
+/* ── Modals ── */
+.modal-ov { position:fixed; inset:0; background:rgba(0,0,0,.4); z-index:200; display:flex; align-items:center; justify-content:center; padding:20px; }
+.modal-box { background:var(--surface); border-radius:var(--r); padding:28px; max-width:480px; width:100%;
+  box-shadow:0 20px 60px rgba(0,0,0,.15); max-height:90vh; overflow-y:auto; }
+.modal-box h3 { font-family:'DM Serif Display',serif; font-size:20px; margin-bottom:8px; }
+.modal-box p { font-size:13px; color:var(--text2); margin-bottom:12px; line-height:1.5; }
+.mbtns { display:flex; gap:8px; margin-top:18px; }
+.rules-box { background:#1a1915; border-radius:8px; padding:14px 16px; font-family:monospace; font-size:12px;
+  color:#a8e6cf; margin:10px 0; overflow-x:auto; line-height:1.6; white-space:pre; }
 
-/* Settlement action buttons */
-.settle-actions{display:flex;gap:7px;margin-top:10px;flex-wrap:wrap}
-.btn-settle-full{background:var(--accent);color:#fff;border:none;border-radius:7px;padding:7px 14px;
-  font-family:inherit;font-size:12px;font-weight:500;cursor:pointer;transition:opacity .15s;white-space:nowrap}
-.btn-settle-full:hover{opacity:.85}
-.btn-settle-partial{background:none;border:1px solid var(--border);border-radius:7px;padding:7px 14px;
-  font-family:inherit;font-size:12px;font-weight:500;cursor:pointer;color:var(--text2);transition:background .15s;white-space:nowrap}
-.btn-settle-partial:hover{background:var(--surface2)}
+/* ── Toast ── */
+.toast { position:fixed; bottom:24px; right:24px; background:var(--text); color:#fff; padding:10px 16px;
+  border-radius:8px; font-size:13px; z-index:999; opacity:0; transform:translateY(8px); transition:all .25s; pointer-events:none; }
+.toast.show { opacity:1; transform:translateY(0); }
 
-/* Settlement entry in expense list */
-.eitem.settlement{background:#f6fbf8;border-left:3px solid var(--accent)}
-.eitem.settlement .edesc{color:var(--accent)}
-.eitem.settlement .eamt{color:var(--accent)}
-
-/* Partial payment modal */
-.partial-modal-inner{text-align:center}
-.partial-modal-inner p{margin-bottom:16px}
-.partial-amount-row{display:flex;gap:8px;align-items:center;margin-bottom:6px}
-.partial-amount-row input{flex:1}
-.partial-hint{font-size:12px;color:var(--text3);margin-bottom:16px}
-
-.stitle{font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:.7px;color:var(--text3);margin-bottom:10px}
-.hcard{background:var(--surface);border-radius:var(--r);box-shadow:var(--shadow);overflow:hidden}
-.hitem{display:flex;align-items:center;padding:12px 18px;border-bottom:1px solid var(--border);gap:14px;cursor:pointer;transition:background .1s}
-.hitem:last-child{border-bottom:none}.hitem:hover{background:var(--surface2)}
-.hmo{font-weight:500;font-size:13px;min-width:110px}
-.hstats{display:flex;gap:16px;flex:1;font-size:12px;color:var(--text2)}
-.hsettle{font-size:12px;font-weight:500}
-.hsettle.p1{color:var(--accent)}.hsettle.p2{color:var(--accent2)}.hsettle.ev{color:var(--text3)}
-
-.tgrid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}
-.tcard{background:var(--surface);border-radius:var(--r);box-shadow:var(--shadow);padding:18px}
-.tcard-wide{background:var(--surface);border-radius:var(--r);box-shadow:var(--shadow);padding:18px;margin-bottom:16px}
-.ttitle{font-size:11px;font-weight:500;color:var(--text3);text-transform:uppercase;letter-spacing:.6px;margin-bottom:14px}
-.brow{display:flex;align-items:center;gap:9px;margin-bottom:8px}
-.brow:last-child{margin-bottom:0}
-.blabel{font-size:12px;color:var(--text2);width:86px;flex-shrink:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.btrack{flex:1;height:7px;background:var(--surface2);border-radius:4px;overflow:hidden}
-.bfill{height:100%;border-radius:4px;transition:width .5s ease}
-.bval{font-size:12px;font-weight:500;color:var(--text);width:55px;text-align:right;flex-shrink:0}
-.legend{display:flex;gap:12px;flex-wrap:wrap;margin-top:10px}
-.li{display:flex;align-items:center;gap:5px;font-size:12px;color:var(--text2)}
-.ldot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
-.nodata{text-align:center;padding:48px 20px;color:var(--text3);font-size:14px}
-
-.rules-box{background:#1a1915;border-radius:8px;padding:14px 16px;font-family:monospace;font-size:12px;
-  color:#a8e6cf;margin:10px 0;overflow-x:auto;line-height:1.6;white-space:pre}
-.modal-ov{position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:200;display:flex;align-items:center;justify-content:center;padding:20px}
-.modal-box{background:var(--surface);border-radius:var(--r);padding:28px;max-width:480px;width:100%;
-  box-shadow:0 20px 60px rgba(0,0,0,.15);max-height:90vh;overflow-y:auto}
-.modal-box h3{font-family:'DM Serif Display',serif;font-size:20px;margin-bottom:8px}
-.modal-box p{font-size:13px;color:var(--text2);margin-bottom:12px;line-height:1.5}
-.mbtns{display:flex;gap:8px;margin-top:18px}
-
-.toast{position:fixed;bottom:24px;right:24px;background:var(--text);color:#fff;padding:10px 16px;
-  border-radius:8px;font-size:13px;z-index:999;opacity:0;transform:translateY(8px);transition:all .25s;pointer-events:none}
-.toast.show{opacity:1;transform:translateY(0)}
-
-@media(max-width:700px){
-  .two-col,.tgrid{grid-template-columns:1fr}
-  .sum-row{grid-template-columns:1fr 1fr}
-  .sum-row .sum-card:last-child{grid-column:1/-1}
-  .hstats{display:none}
-  .app-header{padding:11px 14px}
-  .ctr{padding:14px}
-  .sync-status{display:none}
+@media(max-width:700px) {
+  .two-col, .tgrid { grid-template-columns:1fr; }
+  .sum-row { grid-template-columns:1fr 1fr; }
+  .sum-row .sum-card:last-child { grid-column:1/-1; }
+  .hstats { display:none; }
+  .app-header { padding:11px 14px; }
+  .ctr { padding:14px; }
+  .sync-status { display:none; }
 }
 </style>
 </head>
@@ -211,7 +217,7 @@ hr.div{border:none;border-top:1px solid var(--border);margin:18px 0}
     <h2>split.two</h2>
     <p id="lock-hint">This expense tracker is password protected.</p>
     <label class="fl">Password</label>
-    <input type="password" id="lock-pw" placeholder="Enter password" onkeydown="if(event.key==='Enter')checkPw()"/>
+    <input type="password" id="lock-pw" placeholder="Enter password" onkeydown="if(event.key==='Enter')checkPw()">
     <button class="btn-p" onclick="checkPw()">Unlock</button>
     <div class="err" id="lock-err"></div>
   </div>
@@ -224,12 +230,12 @@ hr.div{border:none;border-top:1px solid var(--border);margin:18px 0}
     <h2>Welcome to split.two</h2>
     <p>Set up your shared expense tracker. You only need to do this once — your partner just opens the same URL.</p>
     <label class="fl">Your name</label>
-    <input type="text" id="sn1" placeholder="e.g. Victor"/>
+    <input type="text" id="sn1" placeholder="e.g. Victor">
     <label class="fl">Partner's name</label>
-    <input type="text" id="sn2" placeholder="e.g. Annabel"/>
-    <hr class="div"/>
+    <input type="text" id="sn2" placeholder="e.g. Annabel">
+    <hr class="div">
     <label class="fl">Password <span style="color:var(--text3);font-size:11px;text-transform:none;letter-spacing:0">(recommended)</span></label>
-    <input type="password" id="spw" placeholder="Shared password for both of you"/>
+    <input type="password" id="spw" placeholder="Shared password for both of you">
     <div class="hint">Both of you will use this same password to open the app.</div>
     <button class="btn-p" id="setup-btn" onclick="setupApp()">Create our tracker</button>
     <div class="err" id="setup-err"></div>
@@ -241,14 +247,20 @@ hr.div{border:none;border-top:1px solid var(--border);margin:18px 0}
   <header class="app-header">
     <div class="logo">split<span>.</span>two</div>
     <div class="hright">
-      <div class="sync-status"><span class="sync-dot" id="sync-dot"></span><span id="sync-label">connecting…</span></div>
+      <div class="sync-status">
+        <span class="sync-dot" id="sync-dot"></span>
+        <span id="sync-label">connecting…</span>
+      </div>
       <div class="mnav">
         <button class="nav-btn" onclick="changeMonth(-1)">&#8249;</button>
         <span class="mlabel" id="mlabel"></span>
         <button class="nav-btn" onclick="changeMonth(1)">&#8250;</button>
       </div>
       <button class="ibtn" onclick="openSettings()">
-        <svg width="13" height="13" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="2.5" stroke="currentColor" stroke-width="1.4"/><path d="M8 1v2M8 13v2M1 8h2M13 8h2M3.05 3.05l1.42 1.42M11.53 11.53l1.42 1.42M3.05 12.95l1.42-1.42M11.53 4.47l1.42-1.42" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+        <svg width="13" height="13" viewBox="0 0 16 16" fill="none">
+          <circle cx="8" cy="8" r="2.5" stroke="currentColor" stroke-width="1.4"/>
+          <path d="M8 1v2M8 13v2M1 8h2M13 8h2M3.05 3.05l1.42 1.42M11.53 11.53l1.42 1.42M3.05 12.95l1.42-1.42M11.53 4.47l1.42-1.42" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+        </svg>
         Settings
       </button>
     </div>
@@ -261,13 +273,16 @@ hr.div{border:none;border-top:1px solid var(--border);margin:18px 0}
       <button class="tab" id="tb-trends" onclick="switchTab('trends',this)">Trends</button>
     </div>
 
+    <!-- This month tab -->
     <div id="tab-month">
       <div class="carry" id="carry" style="display:none">📦 <span id="carry-txt"></span></div>
+
       <div class="sum-row">
         <div class="sum-card"><div class="sl">Total spent</div><div class="sv" id="s-total">€0</div><div class="ss">this month</div></div>
         <div class="sum-card"><div class="sl" id="s-l1">—</div><div class="sv" id="s-p1">€0</div><div class="ss">paid out</div></div>
         <div class="sum-card"><div class="sl" id="s-l2">—</div><div class="sv" id="s-p2">€0</div><div class="ss">paid out</div></div>
       </div>
+
       <div class="settle-card">
         <div class="sicon neutral" id="sicon">⚖️</div>
         <div class="stext">
@@ -280,48 +295,63 @@ hr.div{border:none;border-top:1px solid var(--border);margin:18px 0}
         </div>
         <div class="samt z" id="samt"></div>
       </div>
+
       <div class="two-col">
-        <!-- Person 1 column -->
         <div class="ecol">
-          <div class="chdr"><span class="pname" id="cn1">—</span><span class="ptotal" id="ct1">€0</span></div>
+          <div class="chdr">
+            <span class="pname" id="cn1">—</span>
+            <span class="ptotal" id="ct1">€0</span>
+          </div>
           <div class="elist" id="el1"></div>
           <div class="aform">
-            <input type="text" id="d1" placeholder="Description"/>
+            <input type="text" id="d1" placeholder="Description">
             <div class="arow">
-              <input type="number" id="a1" placeholder="Amount (€)" step="0.01" min="0"/>
+              <input type="number" id="a1" placeholder="Amount (€)" step="0.01" min="0">
               <select id="c1">
-                <option value="🛒">🛒 Groceries</option><option value="🍽️">🍽️ Dining</option>
-                <option value="🏠">🏠 Rent/Housing</option><option value="⚡">⚡ Utilities</option>
-                <option value="🚌">🚌 Transport</option><option value="💊">💊 Health</option>
-                <option value="🎉">🎉 Fun/Leisure</option><option value="✈️">✈️ Travel</option>
-                <option value="👗">👗 Shopping</option><option value="📦">📦 Other</option>
+                <option value="🛒">🛒 Groceries</option>
+                <option value="🍽️">🍽️ Dining</option>
+                <option value="🏠">🏠 Rent/Housing</option>
+                <option value="⚡">⚡ Utilities</option>
+                <option value="🚌">🚌 Transport</option>
+                <option value="💊">💊 Health</option>
+                <option value="🎉">🎉 Fun/Leisure</option>
+                <option value="✈️">✈️ Travel</option>
+                <option value="👗">👗 Shopping</option>
+                <option value="📦">📦 Other</option>
               </select>
             </div>
-            <!-- For-whom toggle -->
-            <div class="for-toggle" id="for-toggle-1">
+            <div class="for-toggle">
               <button class="active-me" id="for1-me" onclick="setFor(1,'me')">For me</button>
               <button id="for1-them" onclick="setFor(1,'them')">For <span id="for1-them-name">partner</span> ↩</button>
             </div>
             <button class="btn-add" onclick="addExp(1)">+ Add expense</button>
           </div>
         </div>
-        <!-- Person 2 column -->
+
         <div class="ecol">
-          <div class="chdr"><span class="pname" id="cn2">—</span><span class="ptotal" id="ct2">€0</span></div>
+          <div class="chdr">
+            <span class="pname" id="cn2">—</span>
+            <span class="ptotal" id="ct2">€0</span>
+          </div>
           <div class="elist" id="el2"></div>
           <div class="aform">
-            <input type="text" id="d2" placeholder="Description"/>
+            <input type="text" id="d2" placeholder="Description">
             <div class="arow">
-              <input type="number" id="a2" placeholder="Amount (€)" step="0.01" min="0"/>
+              <input type="number" id="a2" placeholder="Amount (€)" step="0.01" min="0">
               <select id="c2">
-                <option value="🛒">🛒 Groceries</option><option value="🍽️">🍽️ Dining</option>
-                <option value="🏠">🏠 Rent/Housing</option><option value="⚡">⚡ Utilities</option>
-                <option value="🚌">🚌 Transport</option><option value="💊">💊 Health</option>
-                <option value="🎉">🎉 Fun/Leisure</option><option value="✈️">✈️ Travel</option>
-                <option value="👗">👗 Shopping</option><option value="📦">📦 Other</option>
+                <option value="🛒">🛒 Groceries</option>
+                <option value="🍽️">🍽️ Dining</option>
+                <option value="🏠">🏠 Rent/Housing</option>
+                <option value="⚡">⚡ Utilities</option>
+                <option value="🚌">🚌 Transport</option>
+                <option value="💊">💊 Health</option>
+                <option value="🎉">🎉 Fun/Leisure</option>
+                <option value="✈️">✈️ Travel</option>
+                <option value="👗">👗 Shopping</option>
+                <option value="📦">📦 Other</option>
               </select>
             </div>
-            <div class="for-toggle" id="for-toggle-2">
+            <div class="for-toggle">
               <button class="active-me" id="for2-me" onclick="setFor(2,'me')">For me</button>
               <button id="for2-them" onclick="setFor(2,'them')">For <span id="for2-them-name">partner</span> ↩</button>
             </div>
@@ -331,13 +361,32 @@ hr.div{border:none;border-top:1px solid var(--border);margin:18px 0}
       </div>
     </div>
 
+    <!-- History tab -->
     <div id="tab-hist" style="display:none">
       <div class="stitle">Past months</div>
       <div class="hcard" id="hlist"></div>
     </div>
 
+    <!-- Trends tab -->
     <div id="tab-trends" style="display:none">
       <div id="trends-out"></div>
+    </div>
+  </div>
+</div>
+
+<!-- Partial payment modal -->
+<div id="partial-modal" style="display:none">
+  <div class="modal-ov" onclick="closePartialModal(event)">
+    <div class="modal-box" onclick="event.stopPropagation()" style="max-width:360px">
+      <h3>Partial payment</h3>
+      <p id="partial-desc"></p>
+      <input type="number" id="partial-amt" placeholder="Amount (€)" step="0.01" min="0.01"
+        onkeydown="if(event.key==='Enter')recordSettlement('partial')">
+      <div class="hint" id="partial-hint" style="margin-top:6px;margin-bottom:4px"></div>
+      <div class="mbtns">
+        <button class="btn-s" onclick="closePartialModal(null)">Cancel</button>
+        <button class="btn-p" style="margin-top:0" onclick="recordSettlement('partial')">Record payment</button>
+      </div>
     </div>
   </div>
 </div>
@@ -357,31 +406,13 @@ service cloud.firestore {
     }
   }
 }</div>
-      <hr class="div"/>
+      <hr class="div">
       <label class="fl">Change password</label>
-      <input type="password" id="new-pw1" placeholder="New password"/>
-      <input type="password" id="new-pw2" placeholder="Confirm new password" style="margin-top:6px"/>
+      <input type="password" id="new-pw1" placeholder="New password">
+      <input type="password" id="new-pw2" placeholder="Confirm new password" style="margin-top:6px">
       <button class="btn-p" style="margin-top:10px" onclick="changePassword()">Update password</button>
       <div class="err" id="pw-err"></div>
-      <div class="mbtns"><button class="btn-s" onclick="closeSettings()">Close</button></div>
-    </div>
-  </div>
-</div>
-
-<!-- Partial payment modal -->
-<div id="partial-modal" style="display:none">
-  <div class="modal-ov" onclick="closePartialModal(event)">
-    <div class="modal-box" onclick="event.stopPropagation()" style="max-width:360px">
-      <h3>Partial payment</h3>
-      <p id="partial-desc" style="margin-bottom:16px"></p>
-      <div class="partial-amount-row">
-        <input type="number" id="partial-amt" placeholder="Amount (€)" step="0.01" min="0.01" onkeydown="if(event.key==='Enter')recordSettlement('partial')"/>
-      </div>
-      <div class="partial-hint" id="partial-hint"></div>
-      <div class="mbtns">
-        <button class="btn-s" onclick="closePartialModal()">Cancel</button>
-        <button class="btn-p" style="margin-top:0" onclick="recordSettlement('partial')">Record payment</button>
-      </div>
+      <div class="mbtns"><button class="btn-s" onclick="closeSettings(null)">Close</button></div>
     </div>
   </div>
 </div>
@@ -402,512 +433,624 @@ const firebaseConfig = {
   messagingSenderId: "936489658314",
   appId: "1:936489658314:web:005ad5161b88c06bca5133"
 };
-const app = initializeApp(firebaseConfig);
-const db  = getFirestore(app);
+
+const fireApp = initializeApp(firebaseConfig);
+const db = getFirestore(fireApp);
 
 // ── Constants ─────────────────────────────────────────────────
-const MOS=['January','February','March','April','May','June','July','August','September','October','November','December'];
-const CNAME={'🛒':'Groceries','🍽️':'Dining','🏠':'Rent','⚡':'Utilities','🚌':'Transport','💊':'Health','🎉':'Fun','✈️':'Travel','👗':'Shopping','📦':'Other'};
-const CCOL={'🛒':'#2d6a4f','🍽️':'#c77d3e','🏠':'#5b7fa6','⚡':'#b8860b','🚌':'#7b68c8','💊':'#c0392b','🎉':'#e67e22','✈️':'#2980b9','👗':'#8e44ad','📦':'#7f8c8d'};
+const MOS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+const CNAME = {'🛒':'Groceries','🍽️':'Dining','🏠':'Rent','⚡':'Utilities','🚌':'Transport','💊':'Health','🎉':'Fun','✈️':'Travel','👗':'Shopping','📦':'Other'};
+const CCOL = {'🛒':'#2d6a4f','🍽️':'#c77d3e','🏠':'#5b7fa6','⚡':'#b8860b','🚌':'#7b68c8','💊':'#c0392b','🎉':'#e67e22','✈️':'#2980b9','👗':'#8e44ad','📦':'#7f8c8d'};
 
-// ── State ─────────────────────────────────────────────────────
-let cfg=null, allExpenses={}, unlocked=false, monthUnsub=null;
-let vmd=new Date(); vmd.setDate(1);
-
-// forWhom[p] = 'me' | 'them'
-const forWhom={1:'me', 2:'me'};
+// ── App state ─────────────────────────────────────────────────
+let cfg = null;
+let allExpenses = {};
+let unlocked = false;
+let monthUnsub = null;
+let viewDate = new Date();
+viewDate.setDate(1);
+const forWhom = { 1: 'me', 2: 'me' };
 
 // ── Helpers ───────────────────────────────────────────────────
-function mk(d){return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}`}
-function mlab(d){return `${MOS[d.getMonth()]} ${d.getFullYear()}`}
-function fmt(n){return '€'+Math.abs(n).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g,',')}
-function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
-function toast(m){const t=document.getElementById('toast');t.textContent=m;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2600)}
-function setSS(state){
-  const dot=document.getElementById('sync-dot'),lbl=document.getElementById('sync-label');
-  if(state==='live'){dot.className='sync-dot live';lbl.textContent='live sync'}
-  else if(state==='saving'){dot.className='sync-dot saving';lbl.textContent='saving…'}
-  else{dot.className='sync-dot';lbl.textContent='connecting…'}
+function monthKey(d) {
+  return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0');
 }
-async function hash(pw){
-  if(!pw)return null;
-  const buf=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(pw+'st_salt_splittwo'));
-  return Array.from(new Uint8Array(buf)).map(b=>b.toString(16).padStart(2,'0')).join('');
+function monthLabel(d) {
+  return MOS[d.getMonth()] + ' ' + d.getFullYear();
+}
+function fmt(n) {
+  return '€' + Math.abs(n).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+}
+function esc(s) {
+  return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+function showToast(m) {
+  const t = document.getElementById('toast');
+  t.textContent = m;
+  t.classList.add('show');
+  setTimeout(function() { t.classList.remove('show'); }, 2600);
+}
+function setSyncStatus(state) {
+  const dot = document.getElementById('sync-dot');
+  const lbl = document.getElementById('sync-label');
+  if (state === 'live') { dot.className = 'sync-dot live'; lbl.textContent = 'live sync'; }
+  else if (state === 'saving') { dot.className = 'sync-dot saving'; lbl.textContent = 'saving…'; }
+  else { dot.className = 'sync-dot'; lbl.textContent = 'connecting…'; }
+}
+async function hashPw(pw) {
+  if (!pw) return null;
+  const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(pw + 'st_salt_splittwo'));
+  return Array.from(new Uint8Array(buf)).map(function(b) { return b.toString(16).padStart(2, '0'); }).join('');
 }
 
-const cfgRef=doc(db,'splittwo','config');
-function expRef(k){return doc(db,'splittwo','expenses_'+k)}
+// ── Firestore refs ────────────────────────────────────────────
+const cfgRef = doc(db, 'splittwo', 'config');
+const metaRef = doc(db, 'splittwo', 'meta');
+function expRef(key) { return doc(db, 'splittwo', 'expenses_' + key); }
 
-// ── Settlement math ───────────────────────────────────────────
-// Each expense has a `forWhom` field: 'me' (split 50/50) or 'them' (payer fronts it, other owes full amount)
-// Returns net: positive = p2 owes p1, negative = p1 owes p2
-function calcSettlement(exp){
-  let p1owes=0, p2owes=0; // what each person owes to the other (their share of expenses paid by the other)
-
-  // Expenses paid by p1
-  (exp.p1||[]).forEach(e=>{
-    if(e.forWhom==='them'){
-      // p1 paid for p2 in full → p2 owes p1 the full amount
-      p2owes += e.amount;
+// ── Settlement calculation ────────────────────────────────────
+function calcSettlement(exp) {
+  var p2owes = 0;
+  var p1owes = 0;
+  var p1list = exp.p1 || [];
+  var p2list = exp.p2 || [];
+  for (var i = 0; i < p1list.length; i++) {
+    var e = p1list[i];
+    if (e.isSettlement) {
+      p2owes -= e.amount; // settlement payment reduces what p2 owes
+    } else if (e.forWhom === 'them') {
+      p2owes += e.amount; // p1 paid for p2 in full
     } else {
-      // normal shared → p2 owes p1 half
-      p2owes += e.amount / 2;
+      p2owes += e.amount / 2; // shared
     }
-  });
-
-  // Expenses paid by p2
-  (exp.p2||[]).forEach(e=>{
-    if(e.forWhom==='them'){
-      // p2 paid for p1 in full → p1 owes p2 the full amount
-      p1owes += e.amount;
+  }
+  for (var j = 0; j < p2list.length; j++) {
+    var e2 = p2list[j];
+    if (e2.isSettlement) {
+      p1owes -= e2.amount; // settlement payment reduces what p1 owes
+    } else if (e2.forWhom === 'them') {
+      p1owes += e2.amount; // p2 paid for p1 in full
     } else {
-      // normal shared → p1 owes p2 half
-      p1owes += e.amount / 2;
+      p1owes += e2.amount / 2; // shared
     }
-  });
-
-  // Net out: positive = p2 still owes p1; negative = p1 still owes p2
-  return p2owes - p1owes;
+  }
+  return p2owes - p1owes; // positive = p2 owes p1, negative = p1 owes p2
 }
 
-// ── Boot ──────────────────────────────────────────────────────
-async function init(){
-  try{
-    const snap=await getDoc(cfgRef);
-    if(!snap.exists()){show('setup-screen');return}
-    cfg=snap.data();
-    if(cfg.pwHash){
-      show('lock-screen');
-      if(cfg.names) document.getElementById('lock-hint').textContent=`${cfg.names[0]} & ${cfg.names[1]}'s expense tracker is password protected.`;
-    }else{unlocked=true;launchApp()}
-  }catch(e){show('setup-screen')}
+// ── Init ──────────────────────────────────────────────────────
+async function init() {
+  try {
+    var snap = await getDoc(cfgRef);
+    if (!snap.exists()) {
+      showScreen('setup-screen');
+      return;
+    }
+    cfg = snap.data();
+    if (cfg.pwHash) {
+      showScreen('lock-screen');
+      if (cfg.names) {
+        document.getElementById('lock-hint').textContent = cfg.names[0] + ' & ' + cfg.names[1] + "'s expense tracker is password protected.";
+      }
+    } else {
+      unlocked = true;
+      launchApp();
+    }
+  } catch(err) {
+    console.error('Firebase init error:', err);
+    showScreen('setup-screen');
+  }
 }
 
-function show(id){
-  ['lock-screen','setup-screen','main-app'].forEach(s=>
-    document.getElementById(s).style.display=s===id?(id==='main-app'?'block':'flex'):'none');
+function showScreen(id) {
+  var ids = ['lock-screen', 'setup-screen', 'main-app'];
+  for (var i = 0; i < ids.length; i++) {
+    document.getElementById(ids[i]).style.display = ids[i] === id ? (id === 'main-app' ? 'block' : 'flex') : 'none';
+  }
 }
 
 // ── Setup ─────────────────────────────────────────────────────
-window.setupApp=async function(){
-  const n1=document.getElementById('sn1').value.trim();
-  const n2=document.getElementById('sn2').value.trim();
-  if(!n1||!n2){document.getElementById('setup-err').textContent='Please enter both names';return}
-  const pw=document.getElementById('spw').value;
-  const btn=document.getElementById('setup-btn');
-  btn.disabled=true;btn.innerHTML='<span class="spinner"></span>Creating…';
-  try{
-    cfg={names:[n1,n2],pwHash:await hash(pw)};
-    await setDoc(cfgRef,cfg);
-    unlocked=true;launchApp();
-  }catch(e){
-    document.getElementById('setup-err').textContent='Could not connect to Firebase. Check your config.';
-    btn.disabled=false;btn.textContent='Create our tracker';
+window.setupApp = async function() {
+  var n1 = document.getElementById('sn1').value.trim();
+  var n2 = document.getElementById('sn2').value.trim();
+  if (!n1 || !n2) { document.getElementById('setup-err').textContent = 'Please enter both names'; return; }
+  var pw = document.getElementById('spw').value;
+  var btn = document.getElementById('setup-btn');
+  btn.disabled = true;
+  btn.innerHTML = '<span class="spinner"></span>Creating…';
+  try {
+    cfg = { names: [n1, n2], pwHash: await hashPw(pw) };
+    await setDoc(cfgRef, cfg);
+    unlocked = true;
+    launchApp();
+  } catch(err) {
+    document.getElementById('setup-err').textContent = 'Could not connect to Firebase. Check your config.';
+    btn.disabled = false;
+    btn.textContent = 'Create our tracker';
   }
-}
+};
 
-// ── Lock ──────────────────────────────────────────────────────
-window.checkPw=async function(){
-  const inp=document.getElementById('lock-pw').value;
-  const h=await hash(inp);
-  if(h===cfg.pwHash){unlocked=true;document.getElementById('lock-err').textContent='';launchApp();}
-  else{document.getElementById('lock-err').textContent='Incorrect password.';document.getElementById('lock-pw').value='';document.getElementById('lock-pw').focus();}
-}
+// ── Unlock ────────────────────────────────────────────────────
+window.checkPw = async function() {
+  var inp = document.getElementById('lock-pw').value;
+  var h = await hashPw(inp);
+  if (h === cfg.pwHash) {
+    unlocked = true;
+    document.getElementById('lock-err').textContent = '';
+    launchApp();
+  } else {
+    document.getElementById('lock-err').textContent = 'Incorrect password.';
+    document.getElementById('lock-pw').value = '';
+    document.getElementById('lock-pw').focus();
+  }
+};
 
 // ── Launch ────────────────────────────────────────────────────
-function launchApp(){
-  show('main-app');
-  updateToggleLabels();
+function launchApp() {
+  showScreen('main-app');
+  updateNames();
   subscribeExpenses();
 }
 
-function updateToggleLabels(){
-  if(!cfg)return;
-  document.getElementById('for1-them-name').textContent=cfg.names[1];
-  document.getElementById('for2-them-name').textContent=cfg.names[0];
-  document.getElementById('cn1').textContent=cfg.names[0];
-  document.getElementById('cn2').textContent=cfg.names[1];
-  document.getElementById('s-l1').textContent=cfg.names[0];
-  document.getElementById('s-l2').textContent=cfg.names[1];
-  document.getElementById('mlabel').textContent=mlab(vmd);
+function updateNames() {
+  if (!cfg) return;
+  document.getElementById('mlabel').textContent = monthLabel(viewDate);
+  document.getElementById('cn1').textContent = cfg.names[0];
+  document.getElementById('cn2').textContent = cfg.names[1];
+  document.getElementById('s-l1').textContent = cfg.names[0];
+  document.getElementById('s-l2').textContent = cfg.names[1];
+  document.getElementById('for1-them-name').textContent = cfg.names[1];
+  document.getElementById('for2-them-name').textContent = cfg.names[0];
 }
 
-// ── For-whom toggle ───────────────────────────────────────────
-window.setFor=function(p,whom){
-  forWhom[p]=whom;
-  const meBtn=document.getElementById(`for${p}-me`);
-  const themBtn=document.getElementById(`for${p}-them`);
-  meBtn.className=whom==='me'?'active-me':'';
-  themBtn.className=whom==='them'?'active-them':'';
-}
-
-// ── Firestore subscriptions ───────────────────────────────────
-function subscribeExpenses(){
-  const metaRef=doc(db,'splittwo','meta');
-  onSnapshot(metaRef,async snap=>{
-    setSS('live');
-    const months=snap.exists()?(snap.data().months||[]):[];
-    for(const m of months){
-      if(!allExpenses[m]){
-        const s=await getDoc(expRef(m));
-        if(s.exists())allExpenses[m]=s.data();
+// ── Subscriptions ─────────────────────────────────────────────
+function subscribeExpenses() {
+  onSnapshot(metaRef, async function(snap) {
+    setSyncStatus('live');
+    var months = snap.exists() ? (snap.data().months || []) : [];
+    for (var i = 0; i < months.length; i++) {
+      var m = months[i];
+      if (!allExpenses[m]) {
+        var s = await getDoc(expRef(m));
+        if (s.exists()) allExpenses[m] = s.data();
       }
     }
-    subscribeMonth(mk(vmd));
+    subscribeMonth(monthKey(viewDate));
     render();
-  },()=>setSS('connecting'));
+  }, function() { setSyncStatus('connecting'); });
 }
 
-function subscribeMonth(monthKey){
-  if(monthUnsub)monthUnsub();
-  monthUnsub=onSnapshot(expRef(monthKey),snap=>{
-    setSS('live');
-    allExpenses[monthKey]=snap.exists()?snap.data():{p1:[],p2:[]};
+function subscribeMonth(key) {
+  if (monthUnsub) monthUnsub();
+  monthUnsub = onSnapshot(expRef(key), function(snap) {
+    setSyncStatus('live');
+    allExpenses[key] = snap.exists() ? snap.data() : { p1: [], p2: [] };
     render();
   });
 }
 
+// ── For-whom toggle ───────────────────────────────────────────
+window.setFor = function(p, whom) {
+  forWhom[p] = whom;
+  document.getElementById('for' + p + '-me').className = whom === 'me' ? 'active-me' : '';
+  document.getElementById('for' + p + '-them').className = whom === 'them' ? 'active-them' : '';
+};
+
 // ── Add expense ───────────────────────────────────────────────
-window.addExp=async function(p){
-  const dEl=document.getElementById(`d${p}`),aEl=document.getElementById(`a${p}`),cEl=document.getElementById(`c${p}`);
-  const desc=dEl.value.trim(),amount=parseFloat(aEl.value),cat=cEl.value;
-  if(!desc){toast('Please enter a description');dEl.focus();return}
-  if(!amount||amount<=0){toast('Please enter a valid amount');aEl.focus();return}
-  const key=mk(vmd);
-  const now=new Date();
-  const entry={
-    id:Date.now()+'_'+Math.random().toString(36).slice(2,6),
-    desc,amount,cat,
-    forWhom:forWhom[p],  // 'me' or 'them'
-    date:`${now.getDate()} ${MOS[now.getMonth()].slice(0,3)}`
+window.addExp = async function(p) {
+  var dEl = document.getElementById('d' + p);
+  var aEl = document.getElementById('a' + p);
+  var cEl = document.getElementById('c' + p);
+  var desc = dEl.value.trim();
+  var amount = parseFloat(aEl.value);
+  var cat = cEl.value;
+  if (!desc) { showToast('Please enter a description'); dEl.focus(); return; }
+  if (!amount || amount <= 0) { showToast('Please enter a valid amount'); aEl.focus(); return; }
+  var key = monthKey(viewDate);
+  var now = new Date();
+  var entry = {
+    id: Date.now() + '_' + Math.random().toString(36).slice(2, 6),
+    desc: desc,
+    amount: amount,
+    cat: cat,
+    forWhom: forWhom[p],
+    isSettlement: false,
+    date: now.getDate() + ' ' + MOS[now.getMonth()].slice(0, 3)
   };
-  dEl.value='';aEl.value='';
-  // Reset toggle to 'me' after adding
-  setFor(p,'me');
-  setSS('saving');
-  try{
-    const existing=allExpenses[key]||{p1:[],p2:[]};
-    const updated={...existing,[`p${p}`]:[...(existing[`p${p}`]||[]),entry]};
-    await setDoc(expRef(key),updated);
-    await setDoc(doc(db,'splittwo','meta'),{months:arrayUnion(key)},{merge:true});
-    allExpenses[key]=updated;
-    setSS('live');render();
-  }catch(e){toast('Save failed — check connection');setSS('connecting')}
-}
+  dEl.value = '';
+  aEl.value = '';
+  setFor(p, 'me');
+  setSyncStatus('saving');
+  try {
+    var existing = allExpenses[key] || { p1: [], p2: [] };
+    var pkey = 'p' + p;
+    var updated = Object.assign({}, existing);
+    updated[pkey] = (existing[pkey] || []).concat([entry]);
+    await setDoc(expRef(key), updated);
+    await setDoc(metaRef, { months: arrayUnion(key) }, { merge: true });
+    allExpenses[key] = updated;
+    setSyncStatus('live');
+    render();
+  } catch(err) {
+    showToast('Save failed — check connection');
+    setSyncStatus('connecting');
+  }
+};
 
 // ── Delete expense ────────────────────────────────────────────
-window.delExp=async function(p,entryId){
-  const key=mk(vmd);
-  const exp=allExpenses[key]||{p1:[],p2:[]};
-  const updated={...exp,[`p${p}`]:(exp[`p${p}`]||[]).filter(e=>e.id!==entryId)};
-  setSS('saving');
-  try{
-    await setDoc(expRef(key),updated);
-    allExpenses[key]=updated;setSS('live');render();
-  }catch(e){toast('Delete failed');setSS('connecting')}
-}
+window.delExp = async function(p, entryId) {
+  var key = monthKey(viewDate);
+  var exp = allExpenses[key] || { p1: [], p2: [] };
+  var pkey = 'p' + p;
+  var updated = Object.assign({}, exp);
+  updated[pkey] = (exp[pkey] || []).filter(function(e) { return e.id !== entryId; });
+  setSyncStatus('saving');
+  try {
+    await setDoc(expRef(key), updated);
+    allExpenses[key] = updated;
+    setSyncStatus('live');
+    render();
+  } catch(err) {
+    showToast('Delete failed — check connection');
+    setSyncStatus('connecting');
+  }
+};
 
-// ── Month nav ─────────────────────────────────────────────────
-window.changeMonth=function(dir){
-  vmd=new Date(vmd.getFullYear(),vmd.getMonth()+dir,1);
-  document.getElementById('mlabel').textContent=mlab(vmd);
-  subscribeMonth(mk(vmd));render();
-}
-window.jumpMo=function(key){
-  const[yr,mo]=key.split('-');
-  vmd=new Date(parseInt(yr),parseInt(mo)-1,1);
-  switchTab('month',document.getElementById('tb-month'));
-  subscribeMonth(key);render();
-}
+// ── Record settlement ─────────────────────────────────────────
+window.recordSettlement = async function(type) {
+  var key = monthKey(viewDate);
+  var exp = allExpenses[key] || { p1: [], p2: [] };
+  var net = calcSettlement(exp);
+  if (Math.abs(net) < 0.01) { showToast('Already settled!'); return; }
+  var amount;
+  if (type === 'full') {
+    amount = Math.abs(net);
+  } else {
+    var val = parseFloat(document.getElementById('partial-amt').value);
+    if (!val || val <= 0) { showToast('Enter a valid amount'); return; }
+    if (val > Math.abs(net) + 0.01) { showToast('Cannot pay more than owed (' + fmt(Math.abs(net)) + ')'); return; }
+    amount = val;
+    closePartialModal(null);
+  }
+  // net > 0: p2 owes p1 → p2 records payment in their column
+  // net < 0: p1 owes p2 → p1 records payment in their column
+  var payerCol = net > 0 ? 'p2' : 'p1';
+  var payerName = net > 0 ? cfg.names[1] : cfg.names[0];
+  var receiverName = net > 0 ? cfg.names[0] : cfg.names[1];
+  var now = new Date();
+  var entry = {
+    id: Date.now() + '_settle',
+    desc: 'Settlement: ' + payerName + ' → ' + receiverName,
+    amount: amount,
+    cat: '💸',
+    forWhom: 'them',
+    isSettlement: true,
+    date: now.getDate() + ' ' + MOS[now.getMonth()].slice(0, 3)
+  };
+  var updated = Object.assign({}, exp);
+  updated[payerCol] = (exp[payerCol] || []).concat([entry]);
+  setSyncStatus('saving');
+  try {
+    await setDoc(expRef(key), updated);
+    await setDoc(metaRef, { months: arrayUnion(key) }, { merge: true });
+    allExpenses[key] = updated;
+    setSyncStatus('live');
+    render();
+    var remaining = Math.abs(calcSettlement(allExpenses[key]));
+    if (remaining < 0.01) showToast('🎉 All settled!');
+    else showToast('Payment recorded — ' + fmt(remaining) + ' still remaining');
+  } catch(err) {
+    showToast('Save failed — check connection');
+    setSyncStatus('connecting');
+  }
+};
+
+window.openPartialModal = function() {
+  var key = monthKey(viewDate);
+  var exp = allExpenses[key] || { p1: [], p2: [] };
+  var net = calcSettlement(exp);
+  var ower = net > 0 ? cfg.names[1] : cfg.names[0];
+  var receiver = net > 0 ? cfg.names[0] : cfg.names[1];
+  document.getElementById('partial-desc').textContent = 'How much is ' + ower + ' paying ' + receiver + '?';
+  document.getElementById('partial-hint').textContent = 'Full amount owed: ' + fmt(Math.abs(net));
+  document.getElementById('partial-amt').value = '';
+  document.getElementById('partial-modal').style.display = 'block';
+  setTimeout(function() { document.getElementById('partial-amt').focus(); }, 100);
+};
+
+window.closePartialModal = function(e) {
+  if (!e || e.target.classList.contains('modal-ov')) {
+    document.getElementById('partial-modal').style.display = 'none';
+  }
+};
+
+// ── Month navigation ──────────────────────────────────────────
+window.changeMonth = function(dir) {
+  viewDate = new Date(viewDate.getFullYear(), viewDate.getMonth() + dir, 1);
+  document.getElementById('mlabel').textContent = monthLabel(viewDate);
+  subscribeMonth(monthKey(viewDate));
+  render();
+};
+
+window.jumpMo = function(key) {
+  var parts = key.split('-');
+  viewDate = new Date(parseInt(parts[0]), parseInt(parts[1]) - 1, 1);
+  switchTab('month', document.getElementById('tb-month'));
+  subscribeMonth(key);
+  render();
+};
 
 // ── Render ────────────────────────────────────────────────────
-function render(){
-  if(!unlocked||!cfg)return;
-  updateToggleLabels();
-  const key=mk(vmd);
-  const exp=allExpenses[key]||{p1:[],p2:[]};
+function render() {
+  if (!unlocked || !cfg) return;
+  updateNames();
+  var key = monthKey(viewDate);
+  var exp = allExpenses[key] || { p1: [], p2: [] };
+  var p1list = exp.p1 || [];
+  var p2list = exp.p2 || [];
 
-  const t1=(exp.p1||[]).reduce((s,e)=>s+e.amount,0);
-  const t2=(exp.p2||[]).reduce((s,e)=>s+e.amount,0);
-  const tot=t1+t2;
+  // Totals (paid out, including settlements)
+  var t1 = p1list.reduce(function(s, e) { return s + e.amount; }, 0);
+  var t2 = p2list.reduce(function(s, e) { return s + e.amount; }, 0);
+  // Real spend (excluding settlement entries for display)
+  var spend1 = p1list.filter(function(e) { return !e.isSettlement; }).reduce(function(s, e) { return s + e.amount; }, 0);
+  var spend2 = p2list.filter(function(e) { return !e.isSettlement; }).reduce(function(s, e) { return s + e.amount; }, 0);
+  var totalSpend = spend1 + spend2;
 
-  document.getElementById('s-total').textContent=fmt(tot);
-  document.getElementById('s-p1').textContent=fmt(t1);
-  document.getElementById('s-p2').textContent=fmt(t2);
-  document.getElementById('ct1').textContent=fmt(t1);
-  document.getElementById('ct2').textContent=fmt(t2);
+  document.getElementById('s-total').textContent = fmt(totalSpend);
+  document.getElementById('s-p1').textContent = fmt(spend1);
+  document.getElementById('s-p2').textContent = fmt(spend2);
+  document.getElementById('ct1').textContent = fmt(spend1);
+  document.getElementById('ct2').textContent = fmt(spend2);
 
-  // Settlement uses the smart calc
-  const net=calcSettlement(exp); // positive = p2 owes p1
-  const si=document.getElementById('sicon'),sm=document.getElementById('smain'),
-        ss=document.getElementById('ssub'),sa=document.getElementById('samt');
-  const actions=document.getElementById('settle-actions');
-  const fullBtn=document.getElementById('btn-settle-full');
+  var net = calcSettlement(exp);
+  var si = document.getElementById('sicon');
+  var sm = document.getElementById('smain');
+  var ss = document.getElementById('ssub');
+  var sa = document.getElementById('samt');
+  var actions = document.getElementById('settle-actions');
+  var fullBtn = document.getElementById('btn-settle-full');
 
-  if(tot===0){
-    si.textContent='⚖️';si.className='sicon neutral';
-    sm.textContent='No expenses yet';ss.textContent='Add your first expense below';
-    sa.textContent='';sa.className='samt z';
-    actions.style.display='none';
-  }else if(Math.abs(net)<0.01){
-    si.textContent='✓';si.className='sicon green';
-    sm.textContent='All settled!';ss.textContent='Everything is balanced';
-    sa.textContent='';sa.className='samt z';
-    actions.style.display='none';
-  }else if(net>0){
-    si.textContent='→';si.className='sicon amber';
-    sm.textContent=`${cfg.names[1]} owes ${cfg.names[0]}`;
-    ss.textContent=`After accounting for shared and personal expenses`;
-    sa.textContent=fmt(net);sa.className='samt';
-    fullBtn.textContent=`✓ ${cfg.names[1]} paid ${fmt(net)}`;
-    actions.style.display='flex';
-  }else{
-    si.textContent='→';si.className='sicon amber';
-    sm.textContent=`${cfg.names[0]} owes ${cfg.names[1]}`;
-    ss.textContent=`After accounting for shared and personal expenses`;
-    sa.textContent=fmt(Math.abs(net));sa.className='samt';
-    fullBtn.textContent=`✓ ${cfg.names[0]} paid ${fmt(Math.abs(net))}`;
-    actions.style.display='flex';
+  if (totalSpend === 0) {
+    si.textContent = '⚖️'; si.className = 'sicon neutral';
+    sm.textContent = 'No expenses yet'; ss.textContent = 'Add your first expense below';
+    sa.textContent = ''; sa.className = 'samt z';
+    actions.style.display = 'none';
+  } else if (Math.abs(net) < 0.01) {
+    si.textContent = '✓'; si.className = 'sicon green';
+    sm.textContent = 'All settled!'; ss.textContent = 'Everything is balanced';
+    sa.textContent = ''; sa.className = 'samt z';
+    actions.style.display = 'none';
+  } else if (net > 0) {
+    si.textContent = '→'; si.className = 'sicon amber';
+    sm.textContent = cfg.names[1] + ' owes ' + cfg.names[0];
+    ss.textContent = 'After accounting for shared and personal expenses';
+    sa.textContent = fmt(net); sa.className = 'samt';
+    fullBtn.textContent = '✓ ' + cfg.names[1] + ' paid ' + fmt(net);
+    actions.style.display = 'flex';
+  } else {
+    si.textContent = '→'; si.className = 'sicon amber';
+    sm.textContent = cfg.names[0] + ' owes ' + cfg.names[1];
+    ss.textContent = 'After accounting for shared and personal expenses';
+    sa.textContent = fmt(Math.abs(net)); sa.className = 'samt';
+    fullBtn.textContent = '✓ ' + cfg.names[0] + ' paid ' + fmt(Math.abs(net));
+    actions.style.display = 'flex';
   }
 
-  renderList('el1',exp.p1||[],1);
-  renderList('el2',exp.p2||[],2);
-  renderCarry(key);
+  renderList('el1', p1list, 1);
+  renderList('el2', p2list, 2);
+  renderCarryover(key);
 }
 
-function renderList(id,items,p){
-  const el=document.getElementById(id);
-  if(!items.length){el.innerHTML='<div class="empty">No expenses yet</div>';return}
-  const partnerName=p===1?cfg.names[1]:cfg.names[0];
-  el.innerHTML=items.map(e=>{
-    const isSettlement=e.isSettlement===true;
-    const forBadge=(!isSettlement&&e.forWhom==='them')
-      ?`<span class="for-badge">↩ for ${partnerName}</span>`:'';
-    const rowClass=isSettlement?'eitem settlement':'eitem';
-    return `<div class="${rowClass}">
-      <div class="ecat">${e.cat}</div>
-      <div class="edets">
-        <div class="edesc">${esc(e.desc)}</div>
-        <div class="emeta">${e.date}${forBadge?'&nbsp;'+forBadge:''}</div>
-      </div>
-      <div class="eamt">${isSettlement?'−':'+'}${fmt(e.amount)}</div>
-      <button class="edel" onclick="delExp(${p},'${e.id}')">✕</button>
-    </div>`;
+function renderList(id, items, p) {
+  var el = document.getElementById(id);
+  if (!items.length) { el.innerHTML = '<div class="empty">No expenses yet</div>'; return; }
+  var partnerName = p === 1 ? cfg.names[1] : cfg.names[0];
+  el.innerHTML = items.map(function(e) {
+    var isSettlement = e.isSettlement === true;
+    var forBadge = (!isSettlement && e.forWhom === 'them')
+      ? '<span class="for-badge">↩ for ' + partnerName + '</span>' : '';
+    var rowClass = isSettlement ? 'eitem settlement' : 'eitem';
+    var amtPrefix = isSettlement ? '−' : '';
+    return '<div class="' + rowClass + '">' +
+      '<div class="ecat">' + e.cat + '</div>' +
+      '<div class="edets">' +
+        '<div class="edesc">' + esc(e.desc) + '</div>' +
+        '<div class="emeta">' + e.date + (forBadge ? ' ' + forBadge : '') + '</div>' +
+      '</div>' +
+      '<div class="eamt">' + amtPrefix + fmt(e.amount) + '</div>' +
+      '<button class="edel" onclick="delExp(' + p + ',\'' + e.id + '\')">✕</button>' +
+    '</div>';
   }).join('');
 }
 
-// ── Settlement recording ──────────────────────────────────────
-// net > 0 means p2 owes p1 → p2 (col 2) records the payment
-// net < 0 means p1 owes p2 → p1 (col 1) records the payment
-window.recordSettlement=async function(type){
-  const key=mk(vmd);
-  const exp=allExpenses[key]||{p1:[],p2:[]};
-  const net=calcSettlement(exp);
-  if(Math.abs(net)<0.01){toast('Already settled!');return}
-
-  let amount;
-  if(type==='full'){
-    amount=Math.abs(net);
-  }else{
-    const val=parseFloat(document.getElementById('partial-amt').value);
-    if(!val||val<=0){toast('Enter a valid amount');return}
-    if(val>Math.abs(net)+0.01){toast(`Can't pay more than owed (${fmt(Math.abs(net))})`);return}
-    amount=val;
-    closePartialModal();
-  }
-
-  // The person who owes records the payment in their column
-  // net>0 → p2 owes p1, so payment goes into p2's column as a settlement entry
-  // net<0 → p1 owes p2, so payment goes into p1's column
-  const payerCol=net>0?'p2':'p1';
-  const payerName=net>0?cfg.names[1]:cfg.names[0];
-  const receiverName=net>0?cfg.names[0]:cfg.names[1];
-
-  const now=new Date();
-  const entry={
-    id:Date.now()+'_settle',
-    desc:`Settlement: ${payerName} → ${receiverName}`,
-    amount,
-    cat:'💸',
-    forWhom:'them',       // full amount goes to the other person
-    isSettlement:true,    // flag so we style it differently
-    date:`${now.getDate()} ${MOS[now.getMonth()].slice(0,3)}`
-  };
-
-  const updated={...exp,[payerCol]:[...(exp[payerCol]||[]),entry]};
-  setSS('saving');
-  try{
-    await setDoc(expRef(key),updated);
-    await setDoc(doc(db,'splittwo','meta'),{months:arrayUnion(key)},{merge:true});
-    allExpenses[key]=updated;
-    setSS('live');
-    render();
-    const remaining=Math.abs(calcSettlement(allExpenses[key]));
-    if(remaining<0.01) toast('🎉 All settled!');
-    else toast(`Payment recorded — ${fmt(remaining)} still remaining`);
-  }catch(e){toast('Save failed — check connection');setSS('connecting')}
-}
-
-window.openPartialModal=function(){
-  const key=mk(vmd);
-  const exp=allExpenses[key]||{p1:[],p2:[]};
-  const net=calcSettlement(exp);
-  const ower=net>0?cfg.names[1]:cfg.names[0];
-  const receiver=net>0?cfg.names[0]:cfg.names[1];
-  document.getElementById('partial-desc').textContent=`How much is ${ower} paying ${receiver}?`;
-  document.getElementById('partial-hint').textContent=`Full amount owed: ${fmt(Math.abs(net))}`;
-  document.getElementById('partial-amt').value='';
-  document.getElementById('partial-modal').style.display='block';
-  setTimeout(()=>document.getElementById('partial-amt').focus(),100);
-}
-
-window.closePartialModal=function(e){
-  if(!e||e.target.classList.contains('modal-ov'))
-    document.getElementById('partial-modal').style.display='none';
-}
-
-
-  const keys=Object.keys(allExpenses).sort();
-  const idx=keys.indexOf(key);
-  if(idx<=0){document.getElementById('carry').style.display='none';return}
-  const prev=allExpenses[keys[idx-1]]||{p1:[],p2:[]};
-  const prevNet=calcSettlement(prev);
-  if(Math.abs(prevNet)<0.01){document.getElementById('carry').style.display='none';return}
-  const pm=MOS[parseInt(keys[idx-1].split('-')[1])-1];
-  const msg=prevNet>0
-    ?`Carried over from ${pm}: ${cfg.names[1]} still owes ${cfg.names[0]} ${fmt(prevNet)}`
-    :`Carried over from ${pm}: ${cfg.names[0]} still owes ${cfg.names[1]} ${fmt(Math.abs(prevNet))}`;
-  document.getElementById('carry').style.display='flex';
-  document.getElementById('carry-txt').textContent=msg;
+function renderCarryover(key) {
+  var keys = Object.keys(allExpenses).sort();
+  var idx = keys.indexOf(key);
+  if (idx <= 0) { document.getElementById('carry').style.display = 'none'; return; }
+  var prev = allExpenses[keys[idx - 1]] || { p1: [], p2: [] };
+  var prevNet = calcSettlement(prev);
+  if (Math.abs(prevNet) < 0.01) { document.getElementById('carry').style.display = 'none'; return; }
+  var prevParts = keys[idx - 1].split('-');
+  var pm = MOS[parseInt(prevParts[1]) - 1];
+  var msg = prevNet > 0
+    ? 'Carried over from ' + pm + ': ' + cfg.names[1] + ' still owes ' + cfg.names[0] + ' ' + fmt(prevNet)
+    : 'Carried over from ' + pm + ': ' + cfg.names[0] + ' still owes ' + cfg.names[1] + ' ' + fmt(Math.abs(prevNet));
+  document.getElementById('carry').style.display = 'flex';
+  document.getElementById('carry-txt').textContent = msg;
 }
 
 // ── History ───────────────────────────────────────────────────
-function renderHist(){
-  const el=document.getElementById('hlist');
-  const keys=Object.keys(allExpenses)
-    .filter(k=>{const e=allExpenses[k];return(e.p1&&e.p1.length)||(e.p2&&e.p2.length)})
-    .sort().reverse();
-  if(!keys.length){el.innerHTML='<div class="empty" style="padding:32px">No history yet.</div>';return}
-  el.innerHTML=keys.map(k=>{
-    const exp=allExpenses[k]||{p1:[],p2:[]};
-    const t1=(exp.p1||[]).reduce((s,e)=>s+e.amount,0);
-    const t2=(exp.p2||[]).reduce((s,e)=>s+e.amount,0);
-    const tot=t1+t2;
-    const net=calcSettlement(exp);
-    const[yr,mo]=k.split('-');
-    const label=`${MOS[parseInt(mo)-1]} ${yr}`;
-    const cnt=(exp.p1||[]).length+(exp.p2||[]).length;
-    let st,sc;
-    if(Math.abs(net)<0.01){st='Even';sc='ev';}
-    else if(net>0){st=`${cfg.names[1]} owed ${fmt(net)}`;sc='p2';}
-    else{st=`${cfg.names[0]} owed ${fmt(Math.abs(net))}`;sc='p1';}
-    return `<div class="hitem" onclick="jumpMo('${k}')">
-      <div class="hmo">${label}</div>
-      <div class="hstats"><span>${cnt} expense${cnt!==1?'s':''}</span><span>Total: ${fmt(tot)}</span><span>${cfg.names[0]}: ${fmt(t1)}</span><span>${cfg.names[1]}: ${fmt(t2)}</span></div>
-      <div class="hsettle ${sc}">${st}</div>
-    </div>`;
+function renderHist() {
+  var el = document.getElementById('hlist');
+  var keys = Object.keys(allExpenses).filter(function(k) {
+    var e = allExpenses[k];
+    return (e.p1 && e.p1.length) || (e.p2 && e.p2.length);
+  }).sort().reverse();
+  if (!keys.length) { el.innerHTML = '<div class="empty" style="padding:32px">No history yet.</div>'; return; }
+  el.innerHTML = keys.map(function(k) {
+    var exp = allExpenses[k] || { p1: [], p2: [] };
+    var spend1 = (exp.p1 || []).filter(function(e) { return !e.isSettlement; }).reduce(function(s, e) { return s + e.amount; }, 0);
+    var spend2 = (exp.p2 || []).filter(function(e) { return !e.isSettlement; }).reduce(function(s, e) { return s + e.amount; }, 0);
+    var tot = spend1 + spend2;
+    var net = calcSettlement(exp);
+    var parts = k.split('-');
+    var label = MOS[parseInt(parts[1]) - 1] + ' ' + parts[0];
+    var cnt = (exp.p1 || []).filter(function(e) { return !e.isSettlement; }).length
+            + (exp.p2 || []).filter(function(e) { return !e.isSettlement; }).length;
+    var st, sc;
+    if (Math.abs(net) < 0.01) { st = 'Settled'; sc = 'ev'; }
+    else if (net > 0) { st = cfg.names[1] + ' owed ' + fmt(net); sc = 'p2'; }
+    else { st = cfg.names[0] + ' owed ' + fmt(Math.abs(net)); sc = 'p1'; }
+    return '<div class="hitem" onclick="jumpMo(\'' + k + '\')">' +
+      '<div class="hmo">' + label + '</div>' +
+      '<div class="hstats">' +
+        '<span>' + cnt + ' expense' + (cnt !== 1 ? 's' : '') + '</span>' +
+        '<span>Total: ' + fmt(tot) + '</span>' +
+        '<span>' + cfg.names[0] + ': ' + fmt(spend1) + '</span>' +
+        '<span>' + cfg.names[1] + ': ' + fmt(spend2) + '</span>' +
+      '</div>' +
+      '<div class="hsettle ' + sc + '">' + st + '</div>' +
+    '</div>';
   }).join('');
 }
 
 // ── Trends ────────────────────────────────────────────────────
-function renderTrends(){
-  const el=document.getElementById('trends-out');
-  const keys=Object.keys(allExpenses)
-    .filter(k=>{const e=allExpenses[k];return(e.p1&&e.p1.length)||(e.p2&&e.p2.length)})
-    .sort();
-  if(!keys.length){el.innerHTML='<div class="nodata">No expense data yet.<br>Add some expenses to see your trends here.</div>';return}
-  const catTot={},moData={};
-  keys.forEach(k=>{
-    const exp=allExpenses[k]||{p1:[],p2:[]};
-    const all=[...(exp.p1||[]),...(exp.p2||[])];
-    const t1=(exp.p1||[]).reduce((s,e)=>s+e.amount,0);
-    const t2=(exp.p2||[]).reduce((s,e)=>s+e.amount,0);
-    const cats={};
-    all.forEach(e=>{
-      if(e.isSettlement)return; // don't count settlement transfers in spend trends
-      catTot[e.cat]=(catTot[e.cat]||0)+e.amount;cats[e.cat]=(cats[e.cat]||0)+e.amount
-    });
-    moData[k]={tot:t1+t2,p1:t1,p2:t2,cats};
-  });
-  const sortedCats=Object.entries(catTot).sort((a,b)=>b[1]-a[1]);
-  const maxCat=sortedCats[0]?.[1]||1;
-  const bars=sortedCats.map(([cat,tot])=>`
-    <div class="brow">
-      <div class="blabel">${cat} ${CNAME[cat]||''}</div>
-      <div class="btrack"><div class="bfill" style="width:${(tot/maxCat*100).toFixed(1)}%;background:${CCOL[cat]||'#888'}"></div></div>
-      <div class="bval">${fmt(tot)}</div>
-    </div>`).join('');
-  const W=500,H=150,PL=38,PR=12,PT=10,PB=26,cW=W-PL-PR,cH=H-PT-PB;
-  const maxMo=Math.max(...keys.map(k=>moData[k]?.tot||0),1);
-  const xS=keys.length>1?cW/(keys.length-1):cW;
-  function pt(k,val){const i=keys.indexOf(k);return[PL+(keys.length>1?i*xS:cW/2),PT+cH-(val/maxMo)*cH]}
-  function path(fn,col){
-    const pts=keys.map(k=>pt(k,fn(k)));
-    const d=pts.map((p,i)=>(i?'L':'M')+p[0].toFixed(1)+','+p[1].toFixed(1)).join(' ');
-    const dots=pts.map(p=>`<circle cx="${p[0].toFixed(1)}" cy="${p[1].toFixed(1)}" r="3" fill="${col}"/>`).join('');
-    return `<path d="${d}" fill="none" stroke="${col}" stroke-width="2" stroke-linejoin="round"/>${dots}`;
+function renderTrends() {
+  var el = document.getElementById('trends-out');
+  var keys = Object.keys(allExpenses).filter(function(k) {
+    var e = allExpenses[k];
+    return (e.p1 && e.p1.length) || (e.p2 && e.p2.length);
+  }).sort();
+  if (!keys.length) {
+    el.innerHTML = '<div class="nodata">No expense data yet.<br>Add some expenses to see your trends here.</div>';
+    return;
   }
-  const grid=[0,.25,.5,.75,1].map(pct=>{
-    const y=PT+cH-pct*cH;
-    return `<line x1="${PL}" x2="${W-PR}" y1="${y.toFixed(1)}" y2="${y.toFixed(1)}" stroke="#e8e4dc" stroke-width="0.5"/>
-            <text x="${PL-4}" y="${(y+3).toFixed(1)}" text-anchor="end" font-size="9" fill="#c0bbba">${pct>0?Math.round(maxMo*pct):''}</text>`;
+  var catTot = {}, moData = {};
+  keys.forEach(function(k) {
+    var exp = allExpenses[k] || { p1: [], p2: [] };
+    var all = (exp.p1 || []).concat(exp.p2 || []);
+    var s1 = (exp.p1 || []).filter(function(e) { return !e.isSettlement; }).reduce(function(s, e) { return s + e.amount; }, 0);
+    var s2 = (exp.p2 || []).filter(function(e) { return !e.isSettlement; }).reduce(function(s, e) { return s + e.amount; }, 0);
+    var cats = {};
+    all.forEach(function(e) {
+      if (e.isSettlement) return;
+      catTot[e.cat] = (catTot[e.cat] || 0) + e.amount;
+      cats[e.cat] = (cats[e.cat] || 0) + e.amount;
+    });
+    moData[k] = { tot: s1 + s2, p1: s1, p2: s2, cats: cats };
+  });
+
+  var sortedCats = Object.entries(catTot).sort(function(a, b) { return b[1] - a[1]; });
+  var maxCat = sortedCats.length ? sortedCats[0][1] : 1;
+  var bars = sortedCats.map(function(entry) {
+    var cat = entry[0], tot = entry[1];
+    return '<div class="brow">' +
+      '<div class="blabel">' + cat + ' ' + (CNAME[cat] || '') + '</div>' +
+      '<div class="btrack"><div class="bfill" style="width:' + (tot / maxCat * 100).toFixed(1) + '%;background:' + (CCOL[cat] || '#888') + '"></div></div>' +
+      '<div class="bval">' + fmt(tot) + '</div>' +
+    '</div>';
   }).join('');
-  const xlabels=keys.map((k,i)=>{
-    const[yr,mo]=k.split('-');
-    const x=PL+(keys.length>1?i*xS:cW/2);
-    return `<text x="${x.toFixed(1)}" y="${H-5}" text-anchor="middle" font-size="10" fill="#a09d98">${MOS[parseInt(mo)-1].slice(0,3)}</text>`;
+
+  var W = 500, H = 150, PL = 38, PR = 12, PT = 10, PB = 26;
+  var cW = W - PL - PR, cH = H - PT - PB;
+  var maxMo = Math.max.apply(null, keys.map(function(k) { return moData[k] ? moData[k].tot : 0; }).concat([1]));
+  var xS = keys.length > 1 ? cW / (keys.length - 1) : cW;
+
+  function pt(k, val) {
+    var i = keys.indexOf(k);
+    return [PL + (keys.length > 1 ? i * xS : cW / 2), PT + cH - (val / maxMo) * cH];
+  }
+  function makePath(fn, col) {
+    var pts = keys.map(function(k) { return pt(k, fn(k)); });
+    var d = pts.map(function(p, i) { return (i ? 'L' : 'M') + p[0].toFixed(1) + ',' + p[1].toFixed(1); }).join(' ');
+    var dots = pts.map(function(p) { return '<circle cx="' + p[0].toFixed(1) + '" cy="' + p[1].toFixed(1) + '" r="3" fill="' + col + '"/>'; }).join('');
+    return '<path d="' + d + '" fill="none" stroke="' + col + '" stroke-width="2" stroke-linejoin="round"/>' + dots;
+  }
+  var grid = [0, 0.25, 0.5, 0.75, 1].map(function(pct) {
+    var y = PT + cH - pct * cH;
+    return '<line x1="' + PL + '" x2="' + (W - PR) + '" y1="' + y.toFixed(1) + '" y2="' + y.toFixed(1) + '" stroke="#e8e4dc" stroke-width="0.5"/>' +
+           '<text x="' + (PL - 4) + '" y="' + (y + 3).toFixed(1) + '" text-anchor="end" font-size="9" fill="#c0bbba">' + (pct > 0 ? Math.round(maxMo * pct) : '') + '</text>';
   }).join('');
-  const P1C='#2d6a4f',P2C='#c77d3e',TC='#5b7fa6';
-  const moChart=`<svg viewBox="0 0 ${W} ${H}" style="width:100%;overflow:visible">${grid}${path(k=>moData[k]?.tot||0,TC)}${path(k=>moData[k]?.p1||0,P1C)}${path(k=>moData[k]?.p2||0,P2C)}${xlabels}</svg>`;
-  const moLeg=`<div class="legend"><div class="li"><div class="ldot" style="background:${TC}"></div>Total</div><div class="li"><div class="ldot" style="background:${P1C}"></div>${cfg.names[0]}</div><div class="li"><div class="ldot" style="background:${P2C}"></div>${cfg.names[1]}</div></div>`;
-  const top5=sortedCats.slice(0,5).map(([c])=>c);
-  const catLines=top5.map(cat=>{
-    const pts=keys.map(k=>{const i=keys.indexOf(k);return[PL+(keys.length>1?i*xS:cW/2),PT+cH-((moData[k]?.cats[cat]||0)/maxMo)*cH]});
-    const d=pts.map((p,i)=>(i?'L':'M')+p[0].toFixed(1)+','+p[1].toFixed(1)).join(' ');
-    const dots=pts.map(p=>`<circle cx="${p[0].toFixed(1)}" cy="${p[1].toFixed(1)}" r="3" fill="${CCOL[cat]||'#888'}"/>`).join('');
-    return `<path d="${d}" fill="none" stroke="${CCOL[cat]||'#888'}" stroke-width="1.5" stroke-linejoin="round"/>${dots}`;
+  var xlabels = keys.map(function(k, i) {
+    var parts = k.split('-');
+    var x = PL + (keys.length > 1 ? i * xS : cW / 2);
+    return '<text x="' + x.toFixed(1) + '" y="' + (H - 5) + '" text-anchor="middle" font-size="10" fill="#a09d98">' + MOS[parseInt(parts[1]) - 1].slice(0, 3) + '</text>';
   }).join('');
-  const catChart=`<svg viewBox="0 0 ${W} ${H}" style="width:100%;overflow:visible">${grid}${catLines}${xlabels}</svg>`;
-  const catLeg=`<div class="legend">${top5.map(c=>`<div class="li"><div class="ldot" style="background:${CCOL[c]||'#888'}"></div>${c} ${CNAME[c]||''}</div>`).join('')}</div>`;
-  el.innerHTML=`
-    <div class="tgrid">
-      <div class="tcard"><div class="ttitle">All-time spending by category</div>${bars}</div>
-      <div class="tcard"><div class="ttitle">Top categories over time</div>${catChart}${catLeg}</div>
-    </div>
-    <div class="tcard-wide"><div class="ttitle">Monthly totals over time</div>${moChart}${moLeg}</div>`;
+
+  var P1C = '#2d6a4f', P2C = '#c77d3e', TC = '#5b7fa6';
+  var moChart = '<svg viewBox="0 0 ' + W + ' ' + H + '" style="width:100%;overflow:visible">' +
+    grid +
+    makePath(function(k) { return moData[k] ? moData[k].tot : 0; }, TC) +
+    makePath(function(k) { return moData[k] ? moData[k].p1 : 0; }, P1C) +
+    makePath(function(k) { return moData[k] ? moData[k].p2 : 0; }, P2C) +
+    xlabels + '</svg>';
+  var moLeg = '<div class="legend">' +
+    '<div class="li"><div class="ldot" style="background:' + TC + '"></div>Total</div>' +
+    '<div class="li"><div class="ldot" style="background:' + P1C + '"></div>' + cfg.names[0] + '</div>' +
+    '<div class="li"><div class="ldot" style="background:' + P2C + '"></div>' + cfg.names[1] + '</div>' +
+    '</div>';
+
+  var top5 = sortedCats.slice(0, 5).map(function(e) { return e[0]; });
+  var catLines = top5.map(function(cat) {
+    var pts = keys.map(function(k, i) {
+      return [PL + (keys.length > 1 ? i * xS : cW / 2), PT + cH - ((moData[k] && moData[k].cats[cat] ? moData[k].cats[cat] : 0) / maxMo) * cH];
+    });
+    var d = pts.map(function(p, i) { return (i ? 'L' : 'M') + p[0].toFixed(1) + ',' + p[1].toFixed(1); }).join(' ');
+    var dots = pts.map(function(p) { return '<circle cx="' + p[0].toFixed(1) + '" cy="' + p[1].toFixed(1) + '" r="3" fill="' + (CCOL[cat] || '#888') + '"/>'; }).join('');
+    return '<path d="' + d + '" fill="none" stroke="' + (CCOL[cat] || '#888') + '" stroke-width="1.5" stroke-linejoin="round"/>' + dots;
+  }).join('');
+  var catChart = '<svg viewBox="0 0 ' + W + ' ' + H + '" style="width:100%;overflow:visible">' + grid + catLines + xlabels + '</svg>';
+  var catLeg = '<div class="legend">' + top5.map(function(c) {
+    return '<div class="li"><div class="ldot" style="background:' + (CCOL[c] || '#888') + '"></div>' + c + ' ' + (CNAME[c] || '') + '</div>';
+  }).join('') + '</div>';
+
+  el.innerHTML =
+    '<div class="tgrid">' +
+      '<div class="tcard"><div class="ttitle">All-time spending by category</div>' + bars + '</div>' +
+      '<div class="tcard"><div class="ttitle">Top categories over time</div>' + catChart + catLeg + '</div>' +
+    '</div>' +
+    '<div class="tcard-wide"><div class="ttitle">Monthly totals over time</div>' + moChart + moLeg + '</div>';
 }
 
 // ── Tabs ──────────────────────────────────────────────────────
-window.switchTab=function(tab,btn){
-  ['month','hist','trends'].forEach(t=>document.getElementById(`tab-${t}`).style.display=t===tab?'block':'none');
-  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
-  if(btn)btn.classList.add('active');
-  if(tab==='hist')renderHist();
-  if(tab==='trends')renderTrends();
-}
+window.switchTab = function(tab, btn) {
+  var tabs = ['month', 'hist', 'trends'];
+  for (var i = 0; i < tabs.length; i++) {
+    document.getElementById('tab-' + tabs[i]).style.display = tabs[i] === tab ? 'block' : 'none';
+  }
+  document.querySelectorAll('.tab').forEach(function(t) { t.classList.remove('active'); });
+  if (btn) btn.classList.add('active');
+  if (tab === 'hist') renderHist();
+  if (tab === 'trends') renderTrends();
+};
 
 // ── Settings ──────────────────────────────────────────────────
-window.openSettings=function(){document.getElementById('settings-modal').style.display='block'}
-window.closeSettings=function(e){
-  if(!e||e.target.classList.contains('modal-ov'))
-    document.getElementById('settings-modal').style.display='none';
-}
-window.changePassword=async function(){
-  const p1=document.getElementById('new-pw1').value;
-  const p2=document.getElementById('new-pw2').value;
-  const errEl=document.getElementById('pw-err');
-  if(!p1){errEl.textContent='Enter a new password';return}
-  if(p1!==p2){errEl.textContent='Passwords do not match';return}
-  try{
-    const h=await hash(p1);
-    await updateDoc(cfgRef,{pwHash:h});
-    cfg.pwHash=h;errEl.textContent='';
-    toast('Password updated!');
-    document.getElementById('new-pw1').value='';
-    document.getElementById('new-pw2').value='';
-  }catch(e){errEl.textContent='Could not save. Check connection.'}
-}
+window.openSettings = function() { document.getElementById('settings-modal').style.display = 'block'; };
+window.closeSettings = function(e) {
+  if (!e || e.target.classList.contains('modal-ov')) {
+    document.getElementById('settings-modal').style.display = 'none';
+  }
+};
+window.changePassword = async function() {
+  var p1 = document.getElementById('new-pw1').value;
+  var p2 = document.getElementById('new-pw2').value;
+  var errEl = document.getElementById('pw-err');
+  if (!p1) { errEl.textContent = 'Enter a new password'; return; }
+  if (p1 !== p2) { errEl.textContent = 'Passwords do not match'; return; }
+  try {
+    var h = await hashPw(p1);
+    await updateDoc(cfgRef, { pwHash: h });
+    cfg.pwHash = h;
+    errEl.textContent = '';
+    showToast('Password updated!');
+    document.getElementById('new-pw1').value = '';
+    document.getElementById('new-pw2').value = '';
+  } catch(err) {
+    errEl.textContent = 'Could not save. Check connection.';
+  }
+};
 
+// ── Boot ──────────────────────────────────────────────────────
 init();
 </script>
 </body>
