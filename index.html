@@ -396,7 +396,10 @@ hr.div { border:none; border-top:1px solid var(--border); margin:18px 0; }
   <div class="modal-ov" onclick="closeSettings(event)">
     <div class="modal-box" onclick="event.stopPropagation()">
       <h3>Settings</h3>
-      <label class="fl" style="margin-top:0">Firestore security rules</label>
+      <label class="fl" style="margin-top:0">Export data</label>
+      <p>Download all your expense history as a CSV file you can open in Excel or Google Sheets.</p>
+      <button class="btn-p" style="margin-top:0;background:var(--accent2)" onclick="exportCSV()">⬇ Download CSV export</button>
+      <hr class="div">
       <p>Paste these in Firebase Console → Firestore → Rules to lock down your database:</p>
       <div class="rules-box">rules_version = '2';
 service cloud.firestore {
@@ -489,32 +492,35 @@ const metaRef = doc(db, 'splittwo', 'meta');
 function expRef(key) { return doc(db, 'splittwo', 'expenses_' + key); }
 
 // ── Settlement calculation ────────────────────────────────────
+// net > 0 = p2 owes p1 | net < 0 = p1 owes p2
 function calcSettlement(exp) {
-  var p2owes = 0;
-  var p1owes = 0;
   var p1list = exp.p1 || [];
   var p2list = exp.p2 || [];
+
+  // Gross debt from real expenses only
+  var p2owes = 0, p1owes = 0;
   for (var i = 0; i < p1list.length; i++) {
-    var e = p1list[i];
-    if (e.isSettlement) {
-      p2owes -= e.amount; // settlement payment reduces what p2 owes
-    } else if (e.forWhom === 'them') {
-      p2owes += e.amount; // p1 paid for p2 in full
-    } else {
-      p2owes += e.amount / 2; // shared
-    }
+    if (p1list[i].isSettlement) continue;
+    p2owes += p1list[i].forWhom === 'them' ? p1list[i].amount : p1list[i].amount / 2;
   }
   for (var j = 0; j < p2list.length; j++) {
-    var e2 = p2list[j];
-    if (e2.isSettlement) {
-      p1owes -= e2.amount; // settlement payment reduces what p1 owes
-    } else if (e2.forWhom === 'them') {
-      p1owes += e2.amount; // p2 paid for p1 in full
-    } else {
-      p1owes += e2.amount / 2; // shared
-    }
+    if (p2list[j].isSettlement) continue;
+    p1owes += p2list[j].forWhom === 'them' ? p2list[j].amount : p2list[j].amount / 2;
   }
-  return p2owes - p1owes; // positive = p2 owes p1, negative = p1 owes p2
+
+  var net = p2owes - p1owes;
+
+  // Settlements reduce the net:
+  // net>0 means p2 owes p1 → p2 paying reduces net (p2 payment is in p2list)
+  // net<0 means p1 owes p2 → p1 paying increases net (p1 payment is in p1list)
+  for (var k = 0; k < p2list.length; k++) {
+    if (p2list[k].isSettlement) net -= p2list[k].amount;
+  }
+  for (var l = 0; l < p1list.length; l++) {
+    if (p1list[l].isSettlement) net += p1list[l].amount;
+  }
+
+  return net;
 }
 
 // ── Init ──────────────────────────────────────────────────────
@@ -1048,6 +1054,46 @@ window.changePassword = async function() {
   } catch(err) {
     errEl.textContent = 'Could not save. Check connection.';
   }
+};
+
+// ── CSV Export ────────────────────────────────────────────────
+window.exportCSV = function() {
+  var rows = [['Month', 'Person', 'Date', 'Description', 'Category', 'Amount (EUR)', 'Type', 'For whom']];
+  var keys = Object.keys(allExpenses).sort();
+  for (var i = 0; i < keys.length; i++) {
+    var k = keys[i];
+    var exp = allExpenses[k] || { p1: [], p2: [] };
+    var parts = k.split('-');
+    var monthStr = MOS[parseInt(parts[1]) - 1] + ' ' + parts[0];
+    var lists = [{ list: exp.p1 || [], name: cfg.names[0] }, { list: exp.p2 || [], name: cfg.names[1] }];
+    for (var p = 0; p < lists.length; p++) {
+      for (var j = 0; j < lists[p].list.length; j++) {
+        var e = lists[p].list[j];
+        var type = e.isSettlement ? 'Settlement' : (e.forWhom === 'them' ? 'Full reimbursement' : 'Shared (50/50)');
+        var forWhomStr = e.isSettlement ? 'N/A' : (e.forWhom === 'them' ? (p === 0 ? cfg.names[1] : cfg.names[0]) : 'Both');
+        rows.push([
+          monthStr,
+          lists[p].name,
+          e.date || '',
+          '"' + (e.desc || '').replace(/"/g, '""') + '"',
+          CNAME[e.cat] || e.cat || '',
+          e.amount.toFixed(2),
+          type,
+          forWhomStr
+        ]);
+      }
+    }
+  }
+  var csv = rows.map(function(r) { return r.join(','); }).join('\n');
+  var blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+  var url = URL.createObjectURL(blob);
+  var a = document.createElement('a');
+  a.href = url;
+  var d = new Date();
+  a.download = 'split-two-export-' + d.getFullYear() + String(d.getMonth()+1).padStart(2,'0') + String(d.getDate()).padStart(2,'0') + '.csv';
+  a.click();
+  URL.revokeObjectURL(url);
+  showToast('CSV downloaded!');
 };
 
 // ── Boot ──────────────────────────────────────────────────────
