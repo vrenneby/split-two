@@ -118,6 +118,9 @@ hr.div { border:none; border-top:1px solid var(--border); margin:18px 0; }
 .eitem.settlement { background:#f6fbf8; border-left:3px solid var(--accent); }
 .eitem.settlement .edesc { color:var(--accent); }
 .eitem.settlement .eamt { color:var(--accent); }
+.eitem.carryover { background:#f8f5f0; border-left:3px solid var(--accent2); }
+.eitem.carryover .edesc { color:var(--accent2); }
+.eitem.carryover .eamt { color:var(--accent2); }
 .ecat { width:27px; height:27px; border-radius:7px; background:var(--surface2); display:flex; align-items:center; justify-content:center; font-size:12px; flex-shrink:0; }
 .edets { flex:1; min-width:0; }
 .edesc { font-size:13px; font-weight:500; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
@@ -798,8 +801,8 @@ function render() {
   var t1 = p1list.reduce(function(s, e) { return s + e.amount; }, 0);
   var t2 = p2list.reduce(function(s, e) { return s + e.amount; }, 0);
   // Real spend (excluding settlement entries for display)
-  var spend1 = p1list.filter(function(e) { return !e.isSettlement; }).reduce(function(s, e) { return s + e.amount; }, 0);
-  var spend2 = p2list.filter(function(e) { return !e.isSettlement; }).reduce(function(s, e) { return s + e.amount; }, 0);
+  var spend1 = p1list.filter(function(e) { return !e.isSettlement && !e.isCarryover; }).reduce(function(s, e) { return s + e.amount; }, 0);
+  var spend2 = p2list.filter(function(e) { return !e.isSettlement && !e.isCarryover; }).reduce(function(s, e) { return s + e.amount; }, 0);
   var totalSpend = spend1 + spend2;
 
   document.getElementById('s-total').textContent = fmt(totalSpend);
@@ -844,7 +847,7 @@ function render() {
 
   renderList('el1', p1list, 1);
   renderList('el2', p2list, 2);
-  renderCarryover(key);
+  applyCarryover(key);
 }
 
 function renderList(id, items, p) {
@@ -853,9 +856,10 @@ function renderList(id, items, p) {
   var partnerName = p === 1 ? cfg.names[1] : cfg.names[0];
   el.innerHTML = items.map(function(e) {
     var isSettlement = e.isSettlement === true;
-    var forBadge = (!isSettlement && e.forWhom === 'them')
+    var isCarryover = e.isCarryover === true;
+    var rowClass = isCarryover ? 'eitem carryover' : (isSettlement ? 'eitem settlement' : 'eitem');
+    var forBadge = (!isSettlement && !isCarryover && e.forWhom === 'them')
       ? '<span class="for-badge">↩ for ' + partnerName + '</span>' : '';
-    var rowClass = isSettlement ? 'eitem settlement' : 'eitem';
     var amtPrefix = isSettlement ? '−' : '';
     return '<div class="' + rowClass + '">' +
       '<div class="ecat">' + e.cat + '</div>' +
@@ -869,18 +873,46 @@ function renderList(id, items, p) {
   }).join('');
 }
 
-function renderCarryover(key) {
-  var keys = Object.keys(allExpenses).sort();
-  var idx = keys.indexOf(key);
+async function applyCarryover(key) {
+  var allKeys = Object.keys(allExpenses).sort();
+  var idx = allKeys.indexOf(key);
   if (idx <= 0) { document.getElementById('carry').style.display = 'none'; return; }
-  var prev = allExpenses[keys[idx - 1]] || { p1: [], p2: [] };
+  var prevKey = allKeys[idx - 1];
+  var prev = allExpenses[prevKey] || { p1: [], p2: [] };
   var prevNet = calcSettlement(prev);
   if (Math.abs(prevNet) < 0.01) { document.getElementById('carry').style.display = 'none'; return; }
-  var prevParts = keys[idx - 1].split('-');
-  var pm = MOS[parseInt(prevParts[1]) - 1];
+  var prevParts = prevKey.split('-');
+  var pm = MOS[parseInt(prevParts[1]) - 1] + ' ' + prevParts[0];
+  var cur = allExpenses[key] || { p1: [], p2: [] };
+  var carryId = 'carryover_' + prevKey;
+  var alreadyExists = (cur.p1 || []).concat(cur.p2 || []).some(function(e) { return e.id === carryId; });
+  if (!alreadyExists) {
+    var owedCol = prevNet > 0 ? 'p1' : 'p2';
+    var owedName = prevNet > 0 ? cfg.names[0] : cfg.names[1];
+    var owerName = prevNet > 0 ? cfg.names[1] : cfg.names[0];
+    var entry = {
+      id: carryId,
+      desc: 'Carried over: ' + owerName + ' owes ' + owedName + ' (' + pm + ')',
+      amount: Math.abs(prevNet),
+      cat: '📦',
+      forWhom: 'them',
+      isSettlement: false,
+      isCarryover: true,
+      date: '1 ' + MOS[parseInt(key.split('-')[1]) - 1].slice(0, 3)
+    };
+    var updated = Object.assign({}, cur);
+    updated[owedCol] = (cur[owedCol] || []).concat([entry]);
+    setSyncStatus('saving');
+    try {
+      await setDoc(expRef(key), updated);
+      await setDoc(metaRef, { months: arrayUnion(key) }, { merge: true });
+      allExpenses[key] = updated;
+      setSyncStatus('live');
+    } catch(err) { setSyncStatus('connecting'); }
+  }
   var msg = prevNet > 0
-    ? 'Carried over from ' + pm + ': ' + cfg.names[1] + ' still owes ' + cfg.names[0] + ' ' + fmt(prevNet)
-    : 'Carried over from ' + pm + ': ' + cfg.names[0] + ' still owes ' + cfg.names[1] + ' ' + fmt(Math.abs(prevNet));
+    ? '📦 Carried over from ' + pm + ': ' + fmt(Math.abs(prevNet)) + ' added to ' + cfg.names[0] + "'s balance"
+    : '📦 Carried over from ' + pm + ': ' + fmt(Math.abs(prevNet)) + ' added to ' + cfg.names[1] + "'s balance";
   document.getElementById('carry').style.display = 'flex';
   document.getElementById('carry-txt').textContent = msg;
 }
@@ -895,14 +927,14 @@ function renderHist() {
   if (!keys.length) { el.innerHTML = '<div class="empty" style="padding:32px">No history yet.</div>'; return; }
   el.innerHTML = keys.map(function(k) {
     var exp = allExpenses[k] || { p1: [], p2: [] };
-    var spend1 = (exp.p1 || []).filter(function(e) { return !e.isSettlement; }).reduce(function(s, e) { return s + e.amount; }, 0);
-    var spend2 = (exp.p2 || []).filter(function(e) { return !e.isSettlement; }).reduce(function(s, e) { return s + e.amount; }, 0);
+    var spend1 = (exp.p1 || []).filter(function(e) { return !e.isSettlement && !e.isCarryover; }).reduce(function(s, e) { return s + e.amount; }, 0);
+    var spend2 = (exp.p2 || []).filter(function(e) { return !e.isSettlement && !e.isCarryover; }).reduce(function(s, e) { return s + e.amount; }, 0);
     var tot = spend1 + spend2;
     var net = calcSettlement(exp);
     var parts = k.split('-');
     var label = MOS[parseInt(parts[1]) - 1] + ' ' + parts[0];
-    var cnt = (exp.p1 || []).filter(function(e) { return !e.isSettlement; }).length
-            + (exp.p2 || []).filter(function(e) { return !e.isSettlement; }).length;
+    var cnt = (exp.p1 || []).filter(function(e) { return !e.isSettlement && !e.isCarryover; }).length
+            + (exp.p2 || []).filter(function(e) { return !e.isSettlement && !e.isCarryover; }).length;
     var st, sc;
     if (Math.abs(net) < 0.01) { st = 'Settled'; sc = 'ev'; }
     else if (net > 0) { st = cfg.names[1] + ' owed ' + fmt(net); sc = 'p2'; }
@@ -935,11 +967,11 @@ function renderTrends() {
   keys.forEach(function(k) {
     var exp = allExpenses[k] || { p1: [], p2: [] };
     var all = (exp.p1 || []).concat(exp.p2 || []);
-    var s1 = (exp.p1 || []).filter(function(e) { return !e.isSettlement; }).reduce(function(s, e) { return s + e.amount; }, 0);
-    var s2 = (exp.p2 || []).filter(function(e) { return !e.isSettlement; }).reduce(function(s, e) { return s + e.amount; }, 0);
+    var s1 = (exp.p1 || []).filter(function(e) { return !e.isSettlement && !e.isCarryover; }).reduce(function(s, e) { return s + e.amount; }, 0);
+    var s2 = (exp.p2 || []).filter(function(e) { return !e.isSettlement && !e.isCarryover; }).reduce(function(s, e) { return s + e.amount; }, 0);
     var cats = {};
     all.forEach(function(e) {
-      if (e.isSettlement) return;
+      if (e.isSettlement || e.isCarryover) return;
       catTot[e.cat] = (catTot[e.cat] || 0) + e.amount;
       cats[e.cat] = (cats[e.cat] || 0) + e.amount;
     });
