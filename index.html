@@ -500,10 +500,11 @@ function calcSettlement(exp) {
   var p1list = exp.p1 || [];
   var p2list = exp.p2 || [];
 
-  // Gross debt from real expenses only
+  // Gross debt from real expenses + carryovers (isSettlement excluded)
   var p2owes = 0, p1owes = 0;
   for (var i = 0; i < p1list.length; i++) {
     if (p1list[i].isSettlement) continue;
+    // carryovers and "for them" expenses are both full-amount charges
     p2owes += p1list[i].forWhom === 'them' ? p1list[i].amount : p1list[i].amount / 2;
   }
   for (var j = 0; j < p2list.length; j++) {
@@ -513,9 +514,7 @@ function calcSettlement(exp) {
 
   var net = p2owes - p1owes;
 
-  // Settlements reduce the net:
-  // net>0 means p2 owes p1 → p2 paying reduces net (p2 payment is in p2list)
-  // net<0 means p1 owes p2 → p1 paying increases net (p1 payment is in p1list)
+  // Settlements reduce the net directly
   for (var k = 0; k < p2list.length; k++) {
     if (p2list[k].isSettlement) net -= p2list[k].amount;
   }
