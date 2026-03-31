@@ -885,10 +885,16 @@ async function applyCarryover(key) {
   var cur = allExpenses[key] || { p1: [], p2: [] };
   var carryId = 'carryover_' + prevKey;
   var alreadyExists = (cur.p1 || []).concat(cur.p2 || []).some(function(e) { return e.id === carryId; });
+
+  // prevNet > 0: p2 (Annabel) owes p1 (Victor) → entry goes in p2's column
+  // prevNet < 0: p1 (Victor) owes p2 (Annabel) → entry goes in p1's column
+  // The entry sits in the OWER's column with forWhom:'them',
+  // so calcSettlement reads it as: ower paid X for the other person → other is owed X
+  var owerCol  = prevNet > 0 ? 'p2' : 'p1';
+  var owerName = prevNet > 0 ? cfg.names[1] : cfg.names[0];
+  var owedName = prevNet > 0 ? cfg.names[0] : cfg.names[1];
+
   if (!alreadyExists) {
-    var owedCol = prevNet > 0 ? 'p1' : 'p2';
-    var owedName = prevNet > 0 ? cfg.names[0] : cfg.names[1];
-    var owerName = prevNet > 0 ? cfg.names[1] : cfg.names[0];
     var entry = {
       id: carryId,
       desc: 'Carried over: ' + owerName + ' owes ' + owedName + ' (' + pm + ')',
@@ -900,18 +906,18 @@ async function applyCarryover(key) {
       date: '1 ' + MOS[parseInt(key.split('-')[1]) - 1].slice(0, 3)
     };
     var updated = Object.assign({}, cur);
-    updated[owedCol] = (cur[owedCol] || []).concat([entry]);
+    updated[owerCol] = (cur[owerCol] || []).concat([entry]);
     setSyncStatus('saving');
     try {
       await setDoc(expRef(key), updated);
       await setDoc(metaRef, { months: arrayUnion(key) }, { merge: true });
       allExpenses[key] = updated;
       setSyncStatus('live');
+      render(); // re-render so the new entry and updated balance show immediately
     } catch(err) { setSyncStatus('connecting'); }
   }
-  var msg = prevNet > 0
-    ? '📦 Carried over from ' + pm + ': ' + fmt(Math.abs(prevNet)) + ' added to ' + cfg.names[0] + "'s balance"
-    : '📦 Carried over from ' + pm + ': ' + fmt(Math.abs(prevNet)) + ' added to ' + cfg.names[1] + "'s balance";
+
+  var msg = '📦 Carried over from ' + pm + ': ' + owerName + ' owes ' + owedName + ' ' + fmt(Math.abs(prevNet));
   document.getElementById('carry').style.display = 'flex';
   document.getElementById('carry-txt').textContent = msg;
 }
