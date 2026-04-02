@@ -885,41 +885,42 @@ async function applyCarryover(key) {
   var cur = allExpenses[key] || { p1: [], p2: [] };
   var carryId = 'carryover_' + prevKey;
 
-  // The entry goes in the CREDITOR's column (person being owed), forWhom:'them'
-  // calcSettlement reads: creditor paid X for the other → other owes creditor X
   // prevNet > 0: p2 owes p1 → p1 (Victor) is creditor → entry in p1's column
   // prevNet < 0: p1 owes p2 → p2 (Annabel) is creditor → entry in p2's column
   var creditorCol  = prevNet > 0 ? 'p1' : 'p2';
   var creditorName = prevNet > 0 ? cfg.names[0] : cfg.names[1];
   var debtorName   = prevNet > 0 ? cfg.names[1] : cfg.names[0];
 
-  // Remove any stale carryover entries for this month (wrong column from earlier bugs)
-  var updated = {
-    p1: (cur.p1 || []).filter(function(e) { return e.id !== carryId; }),
-    p2: (cur.p2 || []).filter(function(e) { return e.id !== carryId; })
-  };
+  // Check if correct entry already exists in the right column — if so, just show banner
+  var existsInCorrectCol = (cur[creditorCol] || []).some(function(e) { return e.id === carryId; });
 
-  // Add fresh entry in the correct column
-  var entry = {
-    id: carryId,
-    desc: 'Carried over: ' + debtorName + ' owes ' + creditorName + ' (' + pm + ')',
-    amount: Math.abs(prevNet),
-    cat: '📦',
-    forWhom: 'them',
-    isSettlement: false,
-    isCarryover: true,
-    date: '1 ' + MOS[parseInt(key.split('-')[1]) - 1].slice(0, 3)
-  };
-  updated[creditorCol] = (updated[creditorCol] || []).concat([entry]);
-
-  setSyncStatus('saving');
-  try {
-    await setDoc(expRef(key), updated);
-    await setDoc(metaRef, { months: arrayUnion(key) }, { merge: true });
-    allExpenses[key] = updated;
-    setSyncStatus('live');
-    render();
-  } catch(err) { setSyncStatus('connecting'); }
+  if (!existsInCorrectCol) {
+    // Remove any stale carryover entry that may be in the wrong column from a previous bug
+    var cleanP1 = (cur.p1 || []).filter(function(e) { return e.id !== carryId; });
+    var cleanP2 = (cur.p2 || []).filter(function(e) { return e.id !== carryId; });
+    var entry = {
+      id: carryId,
+      desc: 'Carried over: ' + debtorName + ' owes ' + creditorName + ' (' + pm + ')',
+      amount: Math.abs(prevNet),
+      cat: '📦',
+      forWhom: 'them',
+      isSettlement: false,
+      isCarryover: true,
+      date: '1 ' + MOS[parseInt(key.split('-')[1]) - 1].slice(0, 3)
+    };
+    var updated = { p1: cleanP1, p2: cleanP2 };
+    updated[creditorCol] = updated[creditorCol].concat([entry]);
+    setSyncStatus('saving');
+    try {
+      await setDoc(expRef(key), updated);
+      await setDoc(metaRef, { months: arrayUnion(key) }, { merge: true });
+      allExpenses[key] = updated;
+      setSyncStatus('live');
+      // Update list display only — no full render() call to avoid loop
+      renderList('el1', allExpenses[key].p1 || [], 1);
+      renderList('el2', allExpenses[key].p2 || [], 2);
+    } catch(err) { setSyncStatus('connecting'); }
+  }
 
   var msg = '📦 Carried over from ' + pm + ': ' + debtorName + ' owes ' + creditorName + ' ' + fmt(Math.abs(prevNet));
   document.getElementById('carry').style.display = 'flex';
